@@ -1,0 +1,18 @@
+{
+  "disease": "ckd",
+  "user_id": "raw_demo_ckd_1",
+  "raw_inputs": {
+    "age_years": 57,
+    "sex": "female",
+    "body_mass_index": 29.1,
+    "diagnosed_diabetes": true,
+    "diagnosed_hypertension": true,
+    "systolic_bp_mmhg": 146,
+    "diastolic_bp_mmhg": 90,
+    "fasting_glucose_mg_dl": 136
+  },
+  "profile": {
+    "calories_target": 1900
+  },
+  "top_n_foods": 5
+}

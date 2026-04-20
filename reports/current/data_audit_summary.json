@@ -1,0 +1,1668 @@
+{
+  "large_ckd": {
+    "path": "D:\\sem 6\\capstone\\Sem_6_Capstone\\medical datasets\\large\\ckd_large.csv",
+    "rows": 455590,
+    "columns": 10,
+    "column_names": [
+      "age",
+      "male",
+      "BMI",
+      "sysBP",
+      "diaBP",
+      "glucose",
+      "diabetes",
+      "prevalentHyp",
+      "ckd_label",
+      "source"
+    ],
+    "target_distribution": {
+      "0.0": 431848,
+      "1.0": 23742
+    },
+    "columns_detail": [
+      {
+        "column": "age",
+        "dtype": "float64",
+        "non_null": 455590,
+        "missing": 0,
+        "missing_pct": 0.0,
+        "unique_non_null": 63,
+        "constant_non_null": false,
+        "numeric_min": 18.0,
+        "numeric_max": 80.0,
+        "numeric_mean": 55.062442
+      },
+      {
+        "column": "male",
+        "dtype": "float64",
+        "non_null": 455590,
+        "missing": 0,
+        "missing_pct": 0.0,
+        "unique_non_null": 2,
+        "constant_non_null": false,
+        "numeric_min": 0.0,
+        "numeric_max": 1.0,
+        "numeric_mean": 0.475239
+      },
+      {
+        "column": "BMI",
+        "dtype": "float64",
+        "non_null": 412929,
+        "missing": 42661,
+        "missing_pct": 9.3639,
+        "unique_non_null": 4106,
+        "constant_non_null": false,
+        "numeric_min": 12.0,
+        "numeric_max": 79.75,
+        "numeric_mean": 28.539206
+      },
+      {
+        "column": "sysBP",
+        "dtype": "float64",
+        "non_null": 0,
+        "missing": 455590,
+        "missing_pct": 100.0,
+        "unique_non_null": 0,
+        "constant_non_null": true
+      },
+      {
+        "column": "diaBP",
+        "dtype": "float64",
+        "non_null": 0,
+        "missing": 455590,
+        "missing_pct": 100.0,
+        "unique_non_null": 0,
+        "constant_non_null": true
+      },
+      {
+        "column": "glucose",
+        "dtype": "float64",
+        "non_null": 0,
+        "missing": 455590,
+        "missing_pct": 100.0,
+        "unique_non_null": 0,
+        "constant_non_null": true
+      },
+      {
+        "column": "diabetes",
+        "dtype": "float64",
+        "non_null": 68690,
+        "missing": 386900,
+        "missing_pct": 84.9228,
+        "unique_non_null": 2,
+        "constant_non_null": false,
+        "numeric_min": 0.0,
+        "numeric_max": 1.0,
+        "numeric_mean": 0.95075
+      },
+      {
+        "column": "prevalentHyp",
+        "dtype": "float64",
+        "non_null": 0,
+        "missing": 455590,
+        "missing_pct": 100.0,
+        "unique_non_null": 0,
+        "constant_non_null": true
+      },
+      {
+        "column": "ckd_label",
+        "dtype": "float64",
+        "non_null": 455590,
+        "missing": 0,
+        "missing_pct": 0.0,
+        "unique_non_null": 2,
+        "constant_non_null": false,
+        "numeric_min": 0.0,
+        "numeric_max": 1.0,
+        "numeric_mean": 0.052113
+      },
+      {
+        "column": "source",
+        "dtype": "str",
+        "non_null": 455590,
+        "missing": 0,
+        "missing_pct": 0.0,
+        "unique_non_null": 1,
+        "constant_non_null": true,
+        "preview_values": [
+          "brfss"
+        ]
+      }
+    ],
+    "problem_columns": {
+      "all_missing": [
+        "sysBP",
+        "diaBP",
+        "glucose",
+        "prevalentHyp"
+      ],
+      "constant": [
+        "sysBP",
+        "diaBP",
+        "glucose",
+        "prevalentHyp",
+        "source"
+      ],
+      "mostly_missing_over_50pct": [
+        "sysBP",
+        "diaBP",
+        "glucose",
+        "diabetes",
+        "prevalentHyp"
+      ]
+    }
+  },
+  "large_hypertension_500k": {
+    "path": "D:\\sem 6\\capstone\\Sem_6_Capstone\\medical datasets\\large\\hypertension_large_500k.csv",
+    "rows": 500000,
+    "columns": 13,
+    "column_names": [
+      "male",
+      "age",
+      "education",
+      "currentSmoker",
+      "cigsPerDay",
+      "prevalentStroke",
+      "BMI",
+      "sysBP",
+      "diaBP",
+      "glucose",
+      "diabetes",
+      "prevalentHyp",
+      "source"
+    ],
+    "target_distribution": {
+      "1.0": 490776,
+      "0.0": 9224
+    },
+    "columns_detail": [
+      {
+        "column": "male",
+        "dtype": "float64",
+        "non_null": 499924,
+        "missing": 76,
+        "missing_pct": 0.0152,
+        "unique_non_null": 2,
+        "constant_non_null": false,
+        "numeric_min": 0.0,
+        "numeric_max": 1.0,
+        "numeric_mean": 0.470003
+      },
+      {
+        "column": "age",
+        "dtype": "float64",
+        "non_null": 500000,
+        "missing": 0,
+        "missing_pct": 0.0,
+        "unique_non_null": 63,
+        "constant_non_null": false,
+        "numeric_min": 18.0,
+        "numeric_max": 80.0,
+        "numeric_mean": 62.857696
+      },
+      {
+        "column": "education",
+        "dtype": "float64",
+        "non_null": 499989,
+        "missing": 11,
+        "missing_pct": 0.0022,
+        "unique_non_null": 7,
+        "constant_non_null": false,
+        "numeric_min": 1.0,
+        "numeric_max": 9.0,
+        "numeric_mean": 4.901342
+      },
+      {
+        "column": "currentSmoker",
+        "dtype": "float64",
+        "non_null": 478381,
+        "missing": 21619,
+        "missing_pct": 4.3238,
+        "unique_non_null": 2,
+        "constant_non_null": false,
+        "numeric_min": 0.0,
+        "numeric_max": 1.0,
+        "numeric_mean": 0.470305
+      },
+      {
+        "column": "cigsPerDay",
+        "dtype": "float64",
+        "non_null": 290930,
+        "missing": 209070,
+        "missing_pct": 41.814,
+        "unique_non_null": 54,
+        "constant_non_null": false,
+        "numeric_min": 1.0,
+        "numeric_max": 99.0,
+        "numeric_mean": 2.821992
+      },
+      {
+        "column": "prevalentStroke",
+        "dtype": "float64",
+        "non_null": 497972,
+        "missing": 2028,
+        "missing_pct": 0.4056,
+        "unique_non_null": 2,
+        "constant_non_null": false,
+        "numeric_min": 0.0,
+        "numeric_max": 1.0,
+        "numeric_mean": 0.075342
+      },
+      {
+        "column": "BMI",
+        "dtype": "float64",
+        "non_null": 457882,
+        "missing": 42118,
+        "missing_pct": 8.4236,
+        "unique_non_null": 4103,
+        "constant_non_null": false,
+        "numeric_min": 12.0,
+        "numeric_max": 79.82,
+        "numeric_mean": 30.028942
+      },
+      {
+        "column": "sysBP",
+        "dtype": "float64",
+        "non_null": 0,
+        "missing": 500000,
+        "missing_pct": 100.0,
+        "unique_non_null": 0,
+        "constant_non_null": true
+      },
+      {
+        "column": "diaBP",
+        "dtype": "float64",
+        "non_null": 0,
+        "missing": 500000,
+        "missing_pct": 100.0,
+        "unique_non_null": 0,
+        "constant_non_null": true
+      },
+      {
+        "column": "glucose",
+        "dtype": "float64",
+        "non_null": 0,
+        "missing": 500000,
+        "missing_pct": 100.0,
+        "unique_non_null": 0,
+        "constant_non_null": true
+      },
+      {
+        "column": "diabetes",
+        "dtype": "float64",
+        "non_null": 125961,
+        "missing": 374039,
+        "missing_pct": 74.8078,
+        "unique_non_null": 2,
+        "constant_non_null": false,
+        "numeric_min": 0.0,
+        "numeric_max": 1.0,
+        "numeric_mean": 0.971364
+      },
+      {
+        "column": "prevalentHyp",
+        "dtype": "float64",
+        "non_null": 500000,
+        "missing": 0,
+        "missing_pct": 0.0,
+        "unique_non_null": 2,
+        "constant_non_null": false,
+        "numeric_min": 0.0,
+        "numeric_max": 1.0,
+        "numeric_mean": 0.981552
+      },
+      {
+        "column": "source",
+        "dtype": "str",
+        "non_null": 500000,
+        "missing": 0,
+        "missing_pct": 0.0,
+        "unique_non_null": 1,
+        "constant_non_null": true,
+        "preview_values": [
+          "brfss"
+        ]
+      }
+    ],
+    "problem_columns": {
+      "all_missing": [
+        "sysBP",
+        "diaBP",
+        "glucose"
+      ],
+      "constant": [
+        "sysBP",
+        "diaBP",
+        "glucose",
+        "source"
+      ],
+      "mostly_missing_over_50pct": [
+        "sysBP",
+        "diaBP",
+        "glucose",
+        "diabetes"
+      ]
+    }
+  },
+  "large_diabetes_500k": {
+    "path": "D:\\sem 6\\capstone\\Sem_6_Capstone\\medical datasets\\large\\diabetes_large_500k.csv",
+    "rows": 500000,
+    "columns": 10,
+    "column_names": [
+      "age",
+      "male",
+      "BMI",
+      "sysBP",
+      "diaBP",
+      "glucose",
+      "prevalentHyp",
+      "currentSmoker",
+      "diabetes",
+      "source"
+    ],
+    "target_distribution": {
+      "1.0": 471931,
+      "0.0": 28069
+    },
+    "columns_detail": [
+      {
+        "column": "age",
+        "dtype": "float64",
+        "non_null": 500000,
+        "missing": 0,
+        "missing_pct": 0.0,
+        "unique_non_null": 63,
+        "constant_non_null": false,
+        "numeric_min": 18.0,
+        "numeric_max": 80.0,
+        "numeric_mean": 63.505264
+      },
+      {
+        "column": "male",
+        "dtype": "float64",
+        "non_null": 443635,
+        "missing": 56365,
+        "missing_pct": 11.273,
+        "unique_non_null": 2,
+        "constant_non_null": false,
+        "numeric_min": 0.0,
+        "numeric_max": 1.0,
+        "numeric_mean": 0.453161
+      },
+      {
+        "column": "BMI",
+        "dtype": "float64",
+        "non_null": 455026,
+        "missing": 44974,
+        "missing_pct": 8.9948,
+        "unique_non_null": 4373,
+        "constant_non_null": false,
+        "numeric_min": 12.0,
+        "numeric_max": 79.88,
+        "numeric_mean": 31.521729
+      },
+      {
+        "column": "sysBP",
+        "dtype": "float64",
+        "non_null": 0,
+        "missing": 500000,
+        "missing_pct": 100.0,
+        "unique_non_null": 0,
+        "constant_non_null": true
+      },
+      {
+        "column": "diaBP",
+        "dtype": "float64",
+        "non_null": 0,
+        "missing": 500000,
+        "missing_pct": 100.0,
+        "unique_non_null": 0,
+        "constant_non_null": true
+      },
+      {
+        "column": "glucose",
+        "dtype": "float64",
+        "non_null": 0,
+        "missing": 500000,
+        "missing_pct": 100.0,
+        "unique_non_null": 0,
+        "constant_non_null": true
+      },
+      {
+        "column": "prevalentHyp",
+        "dtype": "float64",
+        "non_null": 156451,
+        "missing": 343549,
+        "missing_pct": 68.7098,
+        "unique_non_null": 2,
+        "constant_non_null": false,
+        "numeric_min": 0.0,
+        "numeric_max": 1.0,
+        "numeric_mean": 0.988552
+      },
+      {
+        "column": "currentSmoker",
+        "dtype": "float64",
+        "non_null": 476061,
+        "missing": 23939,
+        "missing_pct": 4.7878,
+        "unique_non_null": 2,
+        "constant_non_null": false,
+        "numeric_min": 0.0,
+        "numeric_max": 1.0,
+        "numeric_mean": 0.476288
+      },
+      {
+        "column": "diabetes",
+        "dtype": "float64",
+        "non_null": 500000,
+        "missing": 0,
+        "missing_pct": 0.0,
+        "unique_non_null": 2,
+        "constant_non_null": false,
+        "numeric_min": 0.0,
+        "numeric_max": 1.0,
+        "numeric_mean": 0.943862
+      },
+      {
+        "column": "source",
+        "dtype": "str",
+        "non_null": 500000,
+        "missing": 0,
+        "missing_pct": 0.0,
+        "unique_non_null": 1,
+        "constant_non_null": true,
+        "preview_values": [
+          "brfss"
+        ]
+      }
+    ],
+    "problem_columns": {
+      "all_missing": [
+        "sysBP",
+        "diaBP",
+        "glucose"
+      ],
+      "constant": [
+        "sysBP",
+        "diaBP",
+        "glucose",
+        "source"
+      ],
+      "mostly_missing_over_50pct": [
+        "sysBP",
+        "diaBP",
+        "glucose",
+        "prevalentHyp"
+      ]
+    }
+  },
+  "preprocessed_ckd": {
+    "path": "D:\\sem 6\\capstone\\Sem_6_Capstone\\preprocessed_outputs\\ckd_preprocessed.csv",
+    "rows": 455590,
+    "columns": 10,
+    "column_names": [
+      "age",
+      "male",
+      "BMI",
+      "sysBP",
+      "diaBP",
+      "glucose",
+      "diabetes",
+      "prevalentHyp",
+      "source",
+      "ckd_label"
+    ],
+    "target_distribution": {
+      "0": 431848,
+      "1": 23742
+    },
+    "columns_detail": [
+      {
+        "column": "age",
+        "dtype": "float64",
+        "non_null": 455590,
+        "missing": 0,
+        "missing_pct": 0.0,
+        "unique_non_null": 63,
+        "constant_non_null": false,
+        "numeric_min": 0.0,
+        "numeric_max": 1.0,
+        "numeric_mean": 0.597781
+      },
+      {
+        "column": "male",
+        "dtype": "float64",
+        "non_null": 455590,
+        "missing": 0,
+        "missing_pct": 0.0,
+        "unique_non_null": 2,
+        "constant_non_null": false,
+        "numeric_min": 0.0,
+        "numeric_max": 1.0,
+        "numeric_mean": 0.475239
+      },
+      {
+        "column": "BMI",
+        "dtype": "float64",
+        "non_null": 455590,
+        "missing": 0,
+        "missing_pct": 0.0,
+        "unique_non_null": 4106,
+        "constant_non_null": false,
+        "numeric_min": 0.0,
+        "numeric_max": 1.0,
+        "numeric_mean": 0.242602
+      },
+      {
+        "column": "sysBP",
+        "dtype": "int64",
+        "non_null": 455590,
+        "missing": 0,
+        "missing_pct": 0.0,
+        "unique_non_null": 1,
+        "constant_non_null": true,
+        "numeric_min": 0.0,
+        "numeric_max": 0.0,
+        "numeric_mean": 0.0
+      },
+      {
+        "column": "diaBP",
+        "dtype": "int64",
+        "non_null": 455590,
+        "missing": 0,
+        "missing_pct": 0.0,
+        "unique_non_null": 1,
+        "constant_non_null": true,
+        "numeric_min": 0.0,
+        "numeric_max": 0.0,
+        "numeric_mean": 0.0
+      },
+      {
+        "column": "glucose",
+        "dtype": "int64",
+        "non_null": 455590,
+        "missing": 0,
+        "missing_pct": 0.0,
+        "unique_non_null": 1,
+        "constant_non_null": true,
+        "numeric_min": 0.0,
+        "numeric_max": 0.0,
+        "numeric_mean": 0.0
+      },
+      {
+        "column": "diabetes",
+        "dtype": "float64",
+        "non_null": 455590,
+        "missing": 0,
+        "missing_pct": 0.0,
+        "unique_non_null": 2,
+        "constant_non_null": false,
+        "numeric_min": 0.0,
+        "numeric_max": 1.0,
+        "numeric_mean": 0.992574
+      },
+      {
+        "column": "prevalentHyp",
+        "dtype": "int64",
+        "non_null": 455590,
+        "missing": 0,
+        "missing_pct": 0.0,
+        "unique_non_null": 1,
+        "constant_non_null": true,
+        "numeric_min": 0.0,
+        "numeric_max": 0.0,
+        "numeric_mean": 0.0
+      },
+      {
+        "column": "source",
+        "dtype": "int64",
+        "non_null": 455590,
+        "missing": 0,
+        "missing_pct": 0.0,
+        "unique_non_null": 1,
+        "constant_non_null": true,
+        "numeric_min": 0.0,
+        "numeric_max": 0.0,
+        "numeric_mean": 0.0
+      },
+      {
+        "column": "ckd_label",
+        "dtype": "int64",
+        "non_null": 455590,
+        "missing": 0,
+        "missing_pct": 0.0,
+        "unique_non_null": 2,
+        "constant_non_null": false,
+        "numeric_min": 0.0,
+        "numeric_max": 1.0,
+        "numeric_mean": 0.052113
+      }
+    ],
+    "problem_columns": {
+      "all_missing": [],
+      "constant": [
+        "sysBP",
+        "diaBP",
+        "glucose",
+        "prevalentHyp",
+        "source"
+      ],
+      "mostly_missing_over_50pct": []
+    }
+  },
+  "preprocessed_hypertension": {
+    "path": "D:\\sem 6\\capstone\\Sem_6_Capstone\\preprocessed_outputs\\hypertension_preprocessed.csv",
+    "rows": 500000,
+    "columns": 13,
+    "column_names": [
+      "male",
+      "age",
+      "education",
+      "currentSmoker",
+      "cigsPerDay",
+      "prevalentStroke",
+      "BMI",
+      "sysBP",
+      "diaBP",
+      "glucose",
+      "diabetes",
+      "source",
+      "prevalentHyp"
+    ],
+    "target_distribution": {
+      "1": 490776,
+      "0": 9224
+    },
+    "columns_detail": [
+      {
+        "column": "male",
+        "dtype": "float64",
+        "non_null": 500000,
+        "missing": 0,
+        "missing_pct": 0.0,
+        "unique_non_null": 2,
+        "constant_non_null": false,
+        "numeric_min": 0.0,
+        "numeric_max": 1.0,
+        "numeric_mean": 0.469932
+      },
+      {
+        "column": "age",
+        "dtype": "float64",
+        "non_null": 500000,
+        "missing": 0,
+        "missing_pct": 0.0,
+        "unique_non_null": 63,
+        "constant_non_null": false,
+        "numeric_min": 0.0,
+        "numeric_max": 1.0,
+        "numeric_mean": 0.723511
+      },
+      {
+        "column": "education",
+        "dtype": "float64",
+        "non_null": 500000,
+        "missing": 0,
+        "missing_pct": 0.0,
+        "unique_non_null": 7,
+        "constant_non_null": false,
+        "numeric_min": 0.0,
+        "numeric_max": 1.0,
+        "numeric_mean": 0.487668
+      },
+      {
+        "column": "currentSmoker",
+        "dtype": "float64",
+        "non_null": 500000,
+        "missing": 0,
+        "missing_pct": 0.0,
+        "unique_non_null": 2,
+        "constant_non_null": false,
+        "numeric_min": 0.0,
+        "numeric_max": 1.0,
+        "numeric_mean": 0.44997
+      },
+      {
+        "column": "cigsPerDay",
+        "dtype": "float64",
+        "non_null": 500000,
+        "missing": 0,
+        "missing_pct": 0.0,
+        "unique_non_null": 54,
+        "constant_non_null": false,
+        "numeric_min": 0.0,
+        "numeric_max": 1.0,
+        "numeric_mean": 0.010818
+      },
+      {
+        "column": "prevalentStroke",
+        "dtype": "float64",
+        "non_null": 500000,
+        "missing": 0,
+        "missing_pct": 0.0,
+        "unique_non_null": 2,
+        "constant_non_null": false,
+        "numeric_min": 0.0,
+        "numeric_max": 1.0,
+        "numeric_mean": 0.075036
+      },
+      {
+        "column": "BMI",
+        "dtype": "float64",
+        "non_null": 500000,
+        "missing": 0,
+        "missing_pct": 0.0,
+        "unique_non_null": 4103,
+        "constant_non_null": false,
+        "numeric_min": 0.0,
+        "numeric_max": 1.0,
+        "numeric_mean": 0.26452
+      },
+      {
+        "column": "sysBP",
+        "dtype": "int64",
+        "non_null": 500000,
+        "missing": 0,
+        "missing_pct": 0.0,
+        "unique_non_null": 1,
+        "constant_non_null": true,
+        "numeric_min": 0.0,
+        "numeric_max": 0.0,
+        "numeric_mean": 0.0
+      },
+      {
+        "column": "diaBP",
+        "dtype": "int64",
+        "non_null": 500000,
+        "missing": 0,
+        "missing_pct": 0.0,
+        "unique_non_null": 1,
+        "constant_non_null": true,
+        "numeric_min": 0.0,
+        "numeric_max": 0.0,
+        "numeric_mean": 0.0
+      },
+      {
+        "column": "glucose",
+        "dtype": "int64",
+        "non_null": 500000,
+        "missing": 0,
+        "missing_pct": 0.0,
+        "unique_non_null": 1,
+        "constant_non_null": true,
+        "numeric_min": 0.0,
+        "numeric_max": 0.0,
+        "numeric_mean": 0.0
+      },
+      {
+        "column": "diabetes",
+        "dtype": "float64",
+        "non_null": 500000,
+        "missing": 0,
+        "missing_pct": 0.0,
+        "unique_non_null": 2,
+        "constant_non_null": false,
+        "numeric_min": 0.0,
+        "numeric_max": 1.0,
+        "numeric_mean": 0.992786
+      },
+      {
+        "column": "source",
+        "dtype": "int64",
+        "non_null": 500000,
+        "missing": 0,
+        "missing_pct": 0.0,
+        "unique_non_null": 1,
+        "constant_non_null": true,
+        "numeric_min": 0.0,
+        "numeric_max": 0.0,
+        "numeric_mean": 0.0
+      },
+      {
+        "column": "prevalentHyp",
+        "dtype": "int64",
+        "non_null": 500000,
+        "missing": 0,
+        "missing_pct": 0.0,
+        "unique_non_null": 2,
+        "constant_non_null": false,
+        "numeric_min": 0.0,
+        "numeric_max": 1.0,
+        "numeric_mean": 0.981552
+      }
+    ],
+    "problem_columns": {
+      "all_missing": [],
+      "constant": [
+        "sysBP",
+        "diaBP",
+        "glucose",
+        "source"
+      ],
+      "mostly_missing_over_50pct": []
+    }
+  },
+  "preprocessed_diabetes": {
+    "path": "D:\\sem 6\\capstone\\Sem_6_Capstone\\preprocessed_outputs\\diabetes_preprocessed.csv",
+    "rows": 500000,
+    "columns": 10,
+    "column_names": [
+      "age",
+      "male",
+      "BMI",
+      "sysBP",
+      "diaBP",
+      "glucose",
+      "prevalentHyp",
+      "currentSmoker",
+      "source",
+      "diabetes"
+    ],
+    "target_distribution": {
+      "1": 471931,
+      "0": 28069
+    },
+    "columns_detail": [
+      {
+        "column": "age",
+        "dtype": "float64",
+        "non_null": 500000,
+        "missing": 0,
+        "missing_pct": 0.0,
+        "unique_non_null": 63,
+        "constant_non_null": false,
+        "numeric_min": 0.0,
+        "numeric_max": 1.0,
+        "numeric_mean": 0.733956
+      },
+      {
+        "column": "male",
+        "dtype": "float64",
+        "non_null": 500000,
+        "missing": 0,
+        "missing_pct": 0.0,
+        "unique_non_null": 2,
+        "constant_non_null": false,
+        "numeric_min": 0.0,
+        "numeric_max": 1.0,
+        "numeric_mean": 0.402076
+      },
+      {
+        "column": "BMI",
+        "dtype": "float64",
+        "non_null": 500000,
+        "missing": 0,
+        "missing_pct": 0.0,
+        "unique_non_null": 4373,
+        "constant_non_null": false,
+        "numeric_min": 0.0,
+        "numeric_max": 1.0,
+        "numeric_mean": 0.286119
+      },
+      {
+        "column": "sysBP",
+        "dtype": "int64",
+        "non_null": 500000,
+        "missing": 0,
+        "missing_pct": 0.0,
+        "unique_non_null": 1,
+        "constant_non_null": true,
+        "numeric_min": 0.0,
+        "numeric_max": 0.0,
+        "numeric_mean": 0.0
+      },
+      {
+        "column": "diaBP",
+        "dtype": "int64",
+        "non_null": 500000,
+        "missing": 0,
+        "missing_pct": 0.0,
+        "unique_non_null": 1,
+        "constant_non_null": true,
+        "numeric_min": 0.0,
+        "numeric_max": 0.0,
+        "numeric_mean": 0.0
+      },
+      {
+        "column": "glucose",
+        "dtype": "int64",
+        "non_null": 500000,
+        "missing": 0,
+        "missing_pct": 0.0,
+        "unique_non_null": 1,
+        "constant_non_null": true,
+        "numeric_min": 0.0,
+        "numeric_max": 0.0,
+        "numeric_mean": 0.0
+      },
+      {
+        "column": "prevalentHyp",
+        "dtype": "float64",
+        "non_null": 500000,
+        "missing": 0,
+        "missing_pct": 0.0,
+        "unique_non_null": 2,
+        "constant_non_null": false,
+        "numeric_min": 0.0,
+        "numeric_max": 1.0,
+        "numeric_mean": 0.996418
+      },
+      {
+        "column": "currentSmoker",
+        "dtype": "float64",
+        "non_null": 500000,
+        "missing": 0,
+        "missing_pct": 0.0,
+        "unique_non_null": 2,
+        "constant_non_null": false,
+        "numeric_min": 0.0,
+        "numeric_max": 1.0,
+        "numeric_mean": 0.453484
+      },
+      {
+        "column": "source",
+        "dtype": "int64",
+        "non_null": 500000,
+        "missing": 0,
+        "missing_pct": 0.0,
+        "unique_non_null": 1,
+        "constant_non_null": true,
+        "numeric_min": 0.0,
+        "numeric_max": 0.0,
+        "numeric_mean": 0.0
+      },
+      {
+        "column": "diabetes",
+        "dtype": "int64",
+        "non_null": 500000,
+        "missing": 0,
+        "missing_pct": 0.0,
+        "unique_non_null": 2,
+        "constant_non_null": false,
+        "numeric_min": 0.0,
+        "numeric_max": 1.0,
+        "numeric_mean": 0.943862
+      }
+    ],
+    "problem_columns": {
+      "all_missing": [],
+      "constant": [
+        "sysBP",
+        "diaBP",
+        "glucose",
+        "source"
+      ],
+      "mostly_missing_over_50pct": []
+    }
+  },
+  "raw_hypertension_framingham": {
+    "path": "D:\\sem 6\\capstone\\Sem_6_Capstone\\medical datasets\\raw\\hypertension\\framingham_heart_study.csv",
+    "rows": 4240,
+    "columns": 16,
+    "column_names": [
+      "male",
+      "age",
+      "education",
+      "currentSmoker",
+      "cigsPerDay",
+      "BPMeds",
+      "prevalentStroke",
+      "prevalentHyp",
+      "diabetes",
+      "totChol",
+      "sysBP",
+      "diaBP",
+      "BMI",
+      "heartRate",
+      "glucose",
+      "TenYearCHD"
+    ],
+    "target_distribution": {
+      "0": 2923,
+      "1": 1317
+    },
+    "columns_detail": [
+      {
+        "column": "male",
+        "dtype": "int64",
+        "non_null": 4240,
+        "missing": 0,
+        "missing_pct": 0.0,
+        "unique_non_null": 2,
+        "constant_non_null": false,
+        "numeric_min": 0.0,
+        "numeric_max": 1.0,
+        "numeric_mean": 0.429245
+      },
+      {
+        "column": "age",
+        "dtype": "int64",
+        "non_null": 4240,
+        "missing": 0,
+        "missing_pct": 0.0,
+        "unique_non_null": 39,
+        "constant_non_null": false,
+        "numeric_min": 32.0,
+        "numeric_max": 70.0,
+        "numeric_mean": 49.580189
+      },
+      {
+        "column": "education",
+        "dtype": "float64",
+        "non_null": 4135,
+        "missing": 105,
+        "missing_pct": 2.4764,
+        "unique_non_null": 4,
+        "constant_non_null": false,
+        "numeric_min": 1.0,
+        "numeric_max": 4.0,
+        "numeric_mean": 1.979444
+      },
+      {
+        "column": "currentSmoker",
+        "dtype": "int64",
+        "non_null": 4240,
+        "missing": 0,
+        "missing_pct": 0.0,
+        "unique_non_null": 2,
+        "constant_non_null": false,
+        "numeric_min": 0.0,
+        "numeric_max": 1.0,
+        "numeric_mean": 0.494104
+      },
+      {
+        "column": "cigsPerDay",
+        "dtype": "float64",
+        "non_null": 4211,
+        "missing": 29,
+        "missing_pct": 0.684,
+        "unique_non_null": 33,
+        "constant_non_null": false,
+        "numeric_min": 0.0,
+        "numeric_max": 70.0,
+        "numeric_mean": 9.005937
+      },
+      {
+        "column": "BPMeds",
+        "dtype": "float64",
+        "non_null": 4187,
+        "missing": 53,
+        "missing_pct": 1.25,
+        "unique_non_null": 2,
+        "constant_non_null": false,
+        "numeric_min": 0.0,
+        "numeric_max": 1.0,
+        "numeric_mean": 0.029615
+      },
+      {
+        "column": "prevalentStroke",
+        "dtype": "int64",
+        "non_null": 4240,
+        "missing": 0,
+        "missing_pct": 0.0,
+        "unique_non_null": 2,
+        "constant_non_null": false,
+        "numeric_min": 0.0,
+        "numeric_max": 1.0,
+        "numeric_mean": 0.005896
+      },
+      {
+        "column": "prevalentHyp",
+        "dtype": "int64",
+        "non_null": 4240,
+        "missing": 0,
+        "missing_pct": 0.0,
+        "unique_non_null": 2,
+        "constant_non_null": false,
+        "numeric_min": 0.0,
+        "numeric_max": 1.0,
+        "numeric_mean": 0.310613
+      },
+      {
+        "column": "diabetes",
+        "dtype": "int64",
+        "non_null": 4240,
+        "missing": 0,
+        "missing_pct": 0.0,
+        "unique_non_null": 2,
+        "constant_non_null": false,
+        "numeric_min": 0.0,
+        "numeric_max": 1.0,
+        "numeric_mean": 0.025708
+      },
+      {
+        "column": "totChol",
+        "dtype": "float64",
+        "non_null": 4190,
+        "missing": 50,
+        "missing_pct": 1.1792,
+        "unique_non_null": 248,
+        "constant_non_null": false,
+        "numeric_min": 107.0,
+        "numeric_max": 696.0,
+        "numeric_mean": 236.699523
+      },
+      {
+        "column": "sysBP",
+        "dtype": "float64",
+        "non_null": 4240,
+        "missing": 0,
+        "missing_pct": 0.0,
+        "unique_non_null": 234,
+        "constant_non_null": false,
+        "numeric_min": 83.5,
+        "numeric_max": 295.0,
+        "numeric_mean": 132.354599
+      },
+      {
+        "column": "diaBP",
+        "dtype": "float64",
+        "non_null": 4240,
+        "missing": 0,
+        "missing_pct": 0.0,
+        "unique_non_null": 146,
+        "constant_non_null": false,
+        "numeric_min": 48.0,
+        "numeric_max": 142.5,
+        "numeric_mean": 82.897759
+      },
+      {
+        "column": "BMI",
+        "dtype": "float64",
+        "non_null": 4221,
+        "missing": 19,
+        "missing_pct": 0.4481,
+        "unique_non_null": 1364,
+        "constant_non_null": false,
+        "numeric_min": 15.54,
+        "numeric_max": 56.8,
+        "numeric_mean": 25.800801
+      },
+      {
+        "column": "heartRate",
+        "dtype": "float64",
+        "non_null": 4239,
+        "missing": 1,
+        "missing_pct": 0.0236,
+        "unique_non_null": 73,
+        "constant_non_null": false,
+        "numeric_min": 44.0,
+        "numeric_max": 143.0,
+        "numeric_mean": 75.878981
+      },
+      {
+        "column": "glucose",
+        "dtype": "float64",
+        "non_null": 3852,
+        "missing": 388,
+        "missing_pct": 9.1509,
+        "unique_non_null": 143,
+        "constant_non_null": false,
+        "numeric_min": 40.0,
+        "numeric_max": 394.0,
+        "numeric_mean": 81.963655
+      },
+      {
+        "column": "TenYearCHD",
+        "dtype": "int64",
+        "non_null": 4240,
+        "missing": 0,
+        "missing_pct": 0.0,
+        "unique_non_null": 2,
+        "constant_non_null": false,
+        "numeric_min": 0.0,
+        "numeric_max": 1.0,
+        "numeric_mean": 0.151887
+      }
+    ],
+    "problem_columns": {
+      "all_missing": [],
+      "constant": [],
+      "mostly_missing_over_50pct": []
+    }
+  },
+  "raw_diabetes_pima": {
+    "path": "D:\\sem 6\\capstone\\Sem_6_Capstone\\medical datasets\\raw\\diabetes\\diabetes.csv",
+    "rows": 768,
+    "columns": 9,
+    "column_names": [
+      "Pregnancies",
+      "Glucose",
+      "BloodPressure",
+      "SkinThickness",
+      "Insulin",
+      "BMI",
+      "DiabetesPedigreeFunction",
+      "Age",
+      "Outcome"
+    ],
+    "target_distribution": {
+      "0": 500,
+      "1": 268
+    },
+    "columns_detail": [
+      {
+        "column": "Pregnancies",
+        "dtype": "int64",
+        "non_null": 768,
+        "missing": 0,
+        "missing_pct": 0.0,
+        "unique_non_null": 17,
+        "constant_non_null": false,
+        "numeric_min": 0.0,
+        "numeric_max": 17.0,
+        "numeric_mean": 3.845052
+      },
+      {
+        "column": "Glucose",
+        "dtype": "int64",
+        "non_null": 768,
+        "missing": 0,
+        "missing_pct": 0.0,
+        "unique_non_null": 136,
+        "constant_non_null": false,
+        "numeric_min": 0.0,
+        "numeric_max": 199.0,
+        "numeric_mean": 120.894531
+      },
+      {
+        "column": "BloodPressure",
+        "dtype": "int64",
+        "non_null": 768,
+        "missing": 0,
+        "missing_pct": 0.0,
+        "unique_non_null": 47,
+        "constant_non_null": false,
+        "numeric_min": 0.0,
+        "numeric_max": 122.0,
+        "numeric_mean": 69.105469
+      },
+      {
+        "column": "SkinThickness",
+        "dtype": "int64",
+        "non_null": 768,
+        "missing": 0,
+        "missing_pct": 0.0,
+        "unique_non_null": 51,
+        "constant_non_null": false,
+        "numeric_min": 0.0,
+        "numeric_max": 99.0,
+        "numeric_mean": 20.536458
+      },
+      {
+        "column": "Insulin",
+        "dtype": "int64",
+        "non_null": 768,
+        "missing": 0,
+        "missing_pct": 0.0,
+        "unique_non_null": 186,
+        "constant_non_null": false,
+        "numeric_min": 0.0,
+        "numeric_max": 846.0,
+        "numeric_mean": 79.799479
+      },
+      {
+        "column": "BMI",
+        "dtype": "float64",
+        "non_null": 768,
+        "missing": 0,
+        "missing_pct": 0.0,
+        "unique_non_null": 248,
+        "constant_non_null": false,
+        "numeric_min": 0.0,
+        "numeric_max": 67.1,
+        "numeric_mean": 31.992578
+      },
+      {
+        "column": "DiabetesPedigreeFunction",
+        "dtype": "float64",
+        "non_null": 768,
+        "missing": 0,
+        "missing_pct": 0.0,
+        "unique_non_null": 517,
+        "constant_non_null": false,
+        "numeric_min": 0.078,
+        "numeric_max": 2.42,
+        "numeric_mean": 0.471876
+      },
+      {
+        "column": "Age",
+        "dtype": "int64",
+        "non_null": 768,
+        "missing": 0,
+        "missing_pct": 0.0,
+        "unique_non_null": 52,
+        "constant_non_null": false,
+        "numeric_min": 21.0,
+        "numeric_max": 81.0,
+        "numeric_mean": 33.240885
+      },
+      {
+        "column": "Outcome",
+        "dtype": "int64",
+        "non_null": 768,
+        "missing": 0,
+        "missing_pct": 0.0,
+        "unique_non_null": 2,
+        "constant_non_null": false,
+        "numeric_min": 0.0,
+        "numeric_max": 1.0,
+        "numeric_mean": 0.348958
+      }
+    ],
+    "problem_columns": {
+      "all_missing": [],
+      "constant": [],
+      "mostly_missing_over_50pct": []
+    }
+  },
+  "raw_nhanes_merged": {
+    "path": "D:\\sem 6\\capstone\\Sem_6_Capstone\\medical datasets\\raw\\NHANES_2017_2018\\NHANES_2017_2018_MERGED.csv",
+    "rows": 9254,
+    "columns": 22,
+    "column_names": [
+      "SEQN",
+      "RIDAGEYR",
+      "RIAGENDR",
+      "DMDEDUC2",
+      "DMDEDUC3",
+      "BMXBMI",
+      "BPXSY1",
+      "BPXSY2",
+      "BPXSY3",
+      "BPXSY4",
+      "BPXDI1",
+      "BPXDI2",
+      "BPXDI3",
+      "BPXDI4",
+      "LBXGLU",
+      "LBDGLUSI",
+      "DIQ010",
+      "BPQ020",
+      "SMQ020",
+      "SMD641",
+      "SMD650",
+      "MCQ160F"
+    ],
+    "columns_detail": [
+      {
+        "column": "SEQN",
+        "dtype": "float64",
+        "non_null": 9254,
+        "missing": 0,
+        "missing_pct": 0.0,
+        "unique_non_null": 9254,
+        "constant_non_null": false,
+        "numeric_min": 93703.0,
+        "numeric_max": 102956.0,
+        "numeric_mean": 98329.5
+      },
+      {
+        "column": "RIDAGEYR",
+        "dtype": "float64",
+        "non_null": 9254,
+        "missing": 0,
+        "missing_pct": 0.0,
+        "unique_non_null": 81,
+        "constant_non_null": false,
+        "numeric_min": 5.397605346934028e-79,
+        "numeric_max": 80.0,
+        "numeric_mean": 34.334234
+      },
+      {
+        "column": "RIAGENDR",
+        "dtype": "float64",
+        "non_null": 9254,
+        "missing": 0,
+        "missing_pct": 0.0,
+        "unique_non_null": 2,
+        "constant_non_null": false,
+        "numeric_min": 1.0,
+        "numeric_max": 2.0,
+        "numeric_mean": 1.507564
+      },
+      {
+        "column": "DMDEDUC2",
+        "dtype": "float64",
+        "non_null": 5569,
+        "missing": 3685,
+        "missing_pct": 39.8206,
+        "unique_non_null": 7,
+        "constant_non_null": false,
+        "numeric_min": 1.0,
+        "numeric_max": 9.0,
+        "numeric_mean": 3.525768
+      },
+      {
+        "column": "DMDEDUC3",
+        "dtype": "float64",
+        "non_null": 2306,
+        "missing": 6948,
+        "missing_pct": 75.081,
+        "unique_non_null": 17,
+        "constant_non_null": false,
+        "numeric_min": 5.397605346934028e-79,
+        "numeric_max": 66.0,
+        "numeric_mean": 6.349523
+      },
+      {
+        "column": "BMXBMI",
+        "dtype": "float64",
+        "non_null": 8005,
+        "missing": 1249,
+        "missing_pct": 13.4969,
+        "unique_non_null": 440,
+        "constant_non_null": false,
+        "numeric_min": 12.3,
+        "numeric_max": 86.2,
+        "numeric_mean": 26.577502
+      },
+      {
+        "column": "BPXSY1",
+        "dtype": "float64",
+        "non_null": 6302,
+        "missing": 2952,
+        "missing_pct": 31.8997,
+        "unique_non_null": 71,
+        "constant_non_null": false,
+        "numeric_min": 72.0,
+        "numeric_max": 228.0,
+        "numeric_mean": 121.331006
+      },
+      {
+        "column": "BPXSY2",
+        "dtype": "float64",
+        "non_null": 6563,
+        "missing": 2691,
+        "missing_pct": 29.0793,
+        "unique_non_null": 73,
+        "constant_non_null": false,
+        "numeric_min": 72.0,
+        "numeric_max": 236.0,
+        "numeric_mean": 121.61481
+      },
+      {
+        "column": "BPXSY3",
+        "dtype": "float64",
+        "non_null": 6538,
+        "missing": 2716,
+        "missing_pct": 29.3495,
+        "unique_non_null": 75,
+        "constant_non_null": false,
+        "numeric_min": 72.0,
+        "numeric_max": 238.0,
+        "numeric_mean": 121.239217
+      },
+      {
+        "column": "BPXSY4",
+        "dtype": "float64",
+        "non_null": 556,
+        "missing": 8698,
+        "missing_pct": 93.9918,
+        "unique_non_null": 62,
+        "constant_non_null": false,
+        "numeric_min": 74.0,
+        "numeric_max": 234.0,
+        "numeric_mean": 129.971223
+      },
+      {
+        "column": "BPXDI1",
+        "dtype": "float64",
+        "non_null": 6302,
+        "missing": 2952,
+        "missing_pct": 31.8997,
+        "unique_non_null": 56,
+        "constant_non_null": false,
+        "numeric_min": 5.397605346934028e-79,
+        "numeric_max": 136.0,
+        "numeric_mean": 67.843224
+      },
+      {
+        "column": "BPXDI2",
+        "dtype": "float64",
+        "non_null": 6563,
+        "missing": 2691,
+        "missing_pct": 29.0793,
+        "unique_non_null": 59,
+        "constant_non_null": false,
+        "numeric_min": 5.397605346934028e-79,
+        "numeric_max": 136.0,
+        "numeric_mean": 68.298339
+      },
+      {
+        "column": "BPXDI3",
+        "dtype": "float64",
+        "non_null": 6538,
+        "missing": 2716,
+        "missing_pct": 29.3495,
+        "unique_non_null": 60,
+        "constant_non_null": false,
+        "numeric_min": 5.397605346934028e-79,
+        "numeric_max": 134.0,
+        "numeric_mean": 68.284797
+      },
+      {
+        "column": "BPXDI4",
+        "dtype": "float64",
+        "non_null": 556,
+        "missing": 8698,
+        "missing_pct": 93.9918,
+        "unique_non_null": 44,
+        "constant_non_null": false,
+        "numeric_min": 5.397605346934028e-79,
+        "numeric_max": 118.0,
+        "numeric_mean": 73.94964
+      },
+      {
+        "column": "LBXGLU",
+        "dtype": "float64",
+        "non_null": 2891,
+        "missing": 6363,
+        "missing_pct": 68.7595,
+        "unique_non_null": 207,
+        "constant_non_null": false,
+        "numeric_min": 47.0,
+        "numeric_max": 451.0,
+        "numeric_mean": 111.803182
+      },
+      {
+        "column": "LBDGLUSI",
+        "dtype": "float64",
+        "non_null": 2891,
+        "missing": 6363,
+        "missing_pct": 68.7595,
+        "unique_non_null": 186,
+        "constant_non_null": false,
+        "numeric_min": 2.61,
+        "numeric_max": 25.0,
+        "numeric_mean": 6.206233
+      },
+      {
+        "column": "DIQ010",
+        "dtype": "float64",
+        "non_null": 8897,
+        "missing": 357,
+        "missing_pct": 3.8578,
+        "unique_non_null": 4,
+        "constant_non_null": false,
+        "numeric_min": 1.0,
+        "numeric_max": 9.0,
+        "numeric_mean": 1.923457
+      },
+      {
+        "column": "BPQ020",
+        "dtype": "float64",
+        "non_null": 6161,
+        "missing": 3093,
+        "missing_pct": 33.4234,
+        "unique_non_null": 3,
+        "constant_non_null": false,
+        "numeric_min": 1.0,
+        "numeric_max": 9.0,
+        "numeric_mean": 1.664503
+      },
+      {
+        "column": "SMQ020",
+        "dtype": "float64",
+        "non_null": 5856,
+        "missing": 3398,
+        "missing_pct": 36.7193,
+        "unique_non_null": 2,
+        "constant_non_null": false,
+        "numeric_min": 1.0,
+        "numeric_max": 2.0,
+        "numeric_mean": 1.597165
+      },
+      {
+        "column": "SMD641",
+        "dtype": "float64",
+        "non_null": 1063,
+        "missing": 8191,
+        "missing_pct": 88.5131,
+        "unique_non_null": 28,
+        "constant_non_null": false,
+        "numeric_min": 5.397605346934028e-79,
+        "numeric_max": 99.0,
+        "numeric_mean": 24.904045
+      },
+      {
+        "column": "SMD650",
+        "dtype": "float64",
+        "non_null": 1022,
+        "missing": 8232,
+        "missing_pct": 88.9561,
+        "unique_non_null": 28,
+        "constant_non_null": false,
+        "numeric_min": 1.0,
+        "numeric_max": 999.0,
+        "numeric_mean": 13.663405
+      },
+      {
+        "column": "MCQ160F",
+        "dtype": "float64",
+        "non_null": 5569,
+        "missing": 3685,
+        "missing_pct": 39.8206,
+        "unique_non_null": 3,
+        "constant_non_null": false,
+        "numeric_min": 1.0,
+        "numeric_max": 9.0,
+        "numeric_mean": 1.963548
+      }
+    ],
+    "problem_columns": {
+      "all_missing": [],
+      "constant": [],
+      "mostly_missing_over_50pct": [
+        "DMDEDUC3",
+        "BPXSY4",
+        "BPXDI4",
+        "LBXGLU",
+        "LBDGLUSI",
+        "SMD641",
+        "SMD650"
+      ]
+    }
+  }
+}

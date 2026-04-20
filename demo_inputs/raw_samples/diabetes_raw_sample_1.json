@@ -1,0 +1,18 @@
+{
+  "disease": "diabetes",
+  "user_id": "raw_demo_diabetes_1",
+  "raw_inputs": {
+    "age_years": 61,
+    "sex": "male",
+    "body_mass_index": 31.7,
+    "current_smoker": false,
+    "diagnosed_hypertension": true,
+    "systolic_bp_mmhg": 152,
+    "diastolic_bp_mmhg": 94,
+    "fasting_glucose_mg_dl": 174
+  },
+  "profile": {
+    "calories_target": 1900
+  },
+  "top_n_foods": 5
+}

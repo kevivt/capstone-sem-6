@@ -1,0 +1,3 @@
+dataset,candidate,model,accuracy,macro_f1,roc_auc
+diabetes,project_final_model,GaussianNB,0.68432,0.522536,0.898276
+diabetes,best_baseline,RandomForestClassifier,0.83151,0.605909,0.852946

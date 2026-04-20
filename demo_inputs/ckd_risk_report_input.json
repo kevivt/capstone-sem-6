@@ -1,0 +1,21 @@
+{
+  "disease": "ckd",
+  "user_id": "teacher_demo_01",
+  "features": {
+    "age": 0.62,
+    "bp": 0.66,
+    "sg": 0.25,
+    "al": 0.75,
+    "su": 0.10,
+    "htn": 1,
+    "dm": 1,
+    "appet": 0,
+    "pe": 1,
+    "ane": 1,
+    "bgr": 0.70
+  },
+  "profile": {
+    "calories_target": 2000
+  },
+  "top_n_foods": 5
+}

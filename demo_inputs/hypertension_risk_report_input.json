@@ -1,0 +1,24 @@
+{
+  "disease": "hypertension",
+  "user_id": "teacher_demo_02",
+  "features": {
+    "male": 1,
+    "age": 0.72,
+    "currentSmoker": 1,
+    "cigsPerDay": 0.60,
+    "BPMeds": 1,
+    "prevalentStroke": 0,
+    "diabetes": 1,
+    "totChol": 0.62,
+    "sysBP": 0.88,
+    "diaBP": 0.84,
+    "BMI": 0.67,
+    "heartRate": 0.71,
+    "glucose": 0.63,
+    "TenYearCHD": 0
+  },
+  "profile": {
+    "calories_target": 2100
+  },
+  "top_n_foods": 5
+}

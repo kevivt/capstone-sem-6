@@ -1,0 +1,19 @@
+{
+  "disease": "diabetes",
+  "user_id": "demo_diabetes_1",
+  "features": {
+    "age": 1.0,
+    "male": 1.0,
+    "BMI": 0.1929876252209782,
+    "sysBP": 0.0,
+    "diaBP": 0.0,
+    "glucose": 0.0,
+    "prevalentHyp": 1.0,
+    "currentSmoker": 0.0,
+    "source": 0.0
+  },
+  "profile": {
+    "calories_target": 2000
+  },
+  "top_n_foods": 5
+}

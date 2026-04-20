@@ -1,0 +1,25 @@
+{
+  "disease": "hypertension",
+  "user_id": "demo_hypertension_2",
+  "features": {
+    "male": 1.0,
+    "age": 0.5789473684210527,
+    "education": 0.0,
+    "currentSmoker": 1.0,
+    "cigsPerDay": 0.4285714285714285,
+    "BPMeds": 0.0,
+    "prevalentStroke": 0.0,
+    "diabetes": 0.0,
+    "totChol": 0.4584178498985801,
+    "sysBP": 0.2644376899696049,
+    "diaBP": 0.2751322751322751,
+    "BMI": 0.3012603005332041,
+    "heartRate": 0.4591836734693877,
+    "glucose": 0.0541310541310541,
+    "TenYearCHD": 1.0
+  },
+  "profile": {
+    "calories_target": 2000
+  },
+  "top_n_foods": 5
+}

@@ -1,0 +1,174 @@
+@startuml
+!define RECTANGLE class
+
+skinparam backgroundColor #FAFAFA
+skinparam defaultTextAlignment center
+skinparam rectangleBorderColor #2C3E50
+skinparam rectangleBackgroundColor #FFFFFF
+skinparam arrowColor #3498DB
+skinparam arrowThickness 2
+skinparam shadowing false
+skinparam padding 10
+skinparam nodesep 60
+skinparam ranksep 80
+
+title AI-Driven Personalized Diet Recommendation System\n<size:12><color:#7F8C8D>High-Level System Architecture</color></size>
+
+' ==================== ACTORS ====================
+actor "Patient/User" as User #LightBlue
+actor "Clinician/\nSupervisor" as Doctor #LightCoral
+
+' ==================== CLIENT LAYER ====================
+package "Client Layer" #F8F9FA {
+    rectangle "Mobile Application" as MobileApp #E3F2FD {
+        component "User Profile &\nMedical Data Entry" as Profile
+        component "Meal Logging &\nFeedback" as MealLog
+        component "AI Chatbot\nInterface" as Chatbot
+    }
+}
+
+' ==================== AI ENGINE LAYER ====================
+package "AI Engine (Backend)" #F8F9FA {
+    
+    rectangle "Deep Learning Engine" as DL #E8F5E9 {
+        note right
+            • Risk Assessment Modeling
+            • Nutrient Requirement Prediction
+            • User Profiling
+        end note
+    }
+    
+    rectangle "Generative AI (LLM)" as LLM #FFF3E0 {
+        note right
+            • Personalized Meal Synthesis
+            • Recipe Generation
+            • Conversational AI
+        end note
+    }
+    
+    package "Safety Guardrail Layer" #FFF3CD {
+        rectangle "Medical Constraint\nEngine" as ConstraintEngine #FFEBEE {
+            note bottom
+                Enforces disease-specific limits:
+                • Sodium/Potassium (CKD)
+                • Carbohydrates (T2DM)
+                • Phosphorus (CKD)
+                • Blood Pressure (Hypertension)
+            end note
+        }
+        
+        rectangle "Real-Time\nAdaptation" as Adaptation #E1F5FE {
+            note bottom
+                • Deviation Detection
+                • Dynamic Recalculation
+                • Alert Generation
+            end note
+        }
+    }
+    
+    rectangle "Feedback & Learning System" as Feedback #F3E5F5 {
+        note bottom
+            User preferences • Adherence tracking
+            Behavioral patterns • Continuous improvement
+        end note
+    }
+}
+
+' ==================== KNOWLEDGE BASE LAYER ====================
+package "Knowledge Base" #F8F9FA {
+    
+    database "Indian Food\nDatabase" as FoodDB #C8E6C9 {
+        note right
+            • IFCT 2017 (528 items)
+            • Indian Food 101 (255 recipes)
+            • Open Food Facts India
+            • USDA FoodData Central
+        end note
+    }
+    
+    database "Patient Health\nData" as HealthDB #BBDEFB {
+        note right
+            • Synthea (Synthetic Patients)
+            • NHANES Dataset
+            • MIMIC-IV Demo
+            • Indian Population Stats
+        end note
+    }
+    
+    database "Medical Knowledge\n& Guidelines" as MedicalDB #FFCCBC {
+        note right
+            • KDOQI (CKD Guidelines)
+            • ADA (Diabetes Guidelines)
+            • DASH (Hypertension)
+            • Nutrient Interaction Rules
+        end note
+    }
+}
+
+' ==================== CONNECTIONS ====================
+
+' User to Client Layer
+User --> Profile : Enter health data
+User --> MealLog : Log meals/\ndeviations
+User --> Chatbot : Ask queries
+
+' Client to AI Engine
+Profile -down-> DL : Patient features\n(Age, BMI, Disease,\nComorbidities)
+MealLog -down-> Adaptation : Report\ndeviations
+Chatbot <-down-> LLM : Conversational\ninteraction
+
+' Within AI Engine
+DL -right-> LLM : Personalized\ncontext
+LLM -down-> ConstraintEngine : Generated\nmeal plans
+LLM -down-> Adaptation : AI-generated\ncontent
+
+' Safety to Client
+ConstraintEngine -up-> Profile : Safe diet\nrecommendations
+Adaptation -up-> MealLog : Recalibrated\nmeals
+
+' Feedback Loop
+MealLog -down-> Feedback : User behavior
+Feedback -up-> DL : Learning data
+
+' Knowledge Base to AI Engine
+FoodDB -left-> LLM : Indian recipes\n& nutrition data
+HealthDB -left-> DL : Clinical statistics\n& patient patterns
+MedicalDB -left-> ConstraintEngine : Dietary guidelines\n& constraints
+
+' Supervisor Oversight
+Doctor ..> Adaptation : Monitor alerts\n& adherence
+Doctor ..> Profile : View progress
+Adaptation ..> Doctor : Critical alerts
+
+' ==================== LEGEND ====================
+legend bottom right
+    |= Symbol |= Meaning |
+    | <back:#3498DB>   </back> | Primary data flow |
+    | <back:#95A5A6>...</back> | Supervision/Monitoring |
+    | <back:#E8F5E9>   </back> | ML/Deep Learning |
+    | <back:#FFF3E0>   </back> | Generative AI |
+    | <back:#FFF3CD>   </back> | Safety Layer |
+    | <back:#C8E6C9>   </back> | Data Source |
+endlegend
+
+' ==================== NOTES ====================
+note as KeyFeatures
+    <b>Key Features</b>
+    ✓ Personalized diet plans for T2DM, CKD, Hypertension
+    ✓ Real-time adaptation to user behavior
+    ✓ Medical safety constraints enforced
+    ✓ Cultural relevance (Indian cuisine)
+    ✓ Optional supervision mode
+    ✓ Privacy-preserving (Federated Learning)
+end note
+
+note as TechStack
+    <b>Technology Stack</b>
+    <b>AI/ML:</b> Deep Learning (TensorFlow/PyTorch)
+              LLM (GPT/Claude) • RAG Architecture
+    <b>Backend:</b> Python • FastAPI • FHIR Integration
+    <b>Mobile:</b> React Native/Flutter
+    <b>Privacy:</b> Federated Learning • On-device AI
+end note
+
+@enduml

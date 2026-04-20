@@ -1,0 +1,195 @@
+<svg viewBox="0 0 1200 800" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <style>
+      .title { font-family: 'Segoe UI', Arial, sans-serif; font-size: 20px; font-weight: 600; fill: #1a1a1a; }
+      .layer-title { font-family: 'Segoe UI', Arial, sans-serif; font-size: 16px; font-weight: 600; fill: #2c3e50; }
+      .component-title { font-family: 'Segoe UI', Arial, sans-serif; font-size: 13px; font-weight: 500; fill: #34495e; }
+      .component-text { font-family: 'Segoe UI', Arial, sans-serif; font-size: 11px; fill: #5d6d7e; }
+      .arrow-text { font-family: 'Segoe UI', Arial, sans-serif; font-size: 10px; fill: #7f8c8d; }
+      
+      .layer-box { fill: #f8f9fa; stroke: #2c3e50; stroke-width: 2; rx: 8; }
+      .component-box { fill: white; stroke: #3498db; stroke-width: 2; rx: 6; }
+      .safety-box { fill: #fff3cd; stroke: #ff6b6b; stroke-width: 2; rx: 6; }
+      .data-box { fill: #e8f5e9; stroke: #4caf50; stroke-width: 2; rx: 6; }
+      
+      .arrow { stroke: #3498db; stroke-width: 2; fill: none; marker-end: url(#arrowhead); }
+      .dotted-arrow { stroke: #95a5a6; stroke-width: 2; fill: none; stroke-dasharray: 5,5; marker-end: url(#arrowhead-gray); }
+    </style>
+    
+    <marker id="arrowhead" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto">
+      <polygon points="0 0, 10 3, 0 6" fill="#3498db" />
+    </marker>
+    <marker id="arrowhead-gray" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto">
+      <polygon points="0 0, 10 3, 0 6" fill="#95a5a6" />
+    </marker>
+  </defs>
+  
+  <!-- Title -->
+  <text x="600" y="30" class="title" text-anchor="middle">AI-Driven Personalized Diet Recommendation System</text>
+  <text x="600" y="50" class="component-text" text-anchor="middle">High-Level System Architecture</text>
+  
+  <!-- Layer 1: Client Layer -->
+  <rect x="50" y="90" width="280" height="200" class="layer-box"/>
+  <text x="190" y="115" class="layer-title" text-anchor="middle">Client Layer</text>
+  
+  <rect x="70" y="135" width="240" height="50" class="component-box"/>
+  <text x="190" y="157" class="component-title" text-anchor="middle">Mobile Application</text>
+  <text x="190" y="173" class="component-text" text-anchor="middle">User Profile • Meal Logging • Chatbot</text>
+  
+  <rect x="70" y="200" width="115" height="70" class="component-box"/>
+  <text x="127" y="222" class="component-title" text-anchor="middle">Patient</text>
+  <text x="127" y="238" class="component-text" text-anchor="middle">Health Data Entry</text>
+  <text x="127" y="252" class="component-text" text-anchor="middle">Diet Tracking</text>
+  <text x="127" y="266" class="component-text" text-anchor="middle">AI Assistance</text>
+  
+  <rect x="195" y="200" width="115" height="70" class="component-box"/>
+  <text x="252" y="222" class="component-title" text-anchor="middle">Supervisor</text>
+  <text x="252" y="238" class="component-text" text-anchor="middle">Monitor Progress</text>
+  <text x="252" y="252" class="component-text" text-anchor="middle">View Alerts</text>
+  <text x="252" y="266" class="component-text" text-anchor="middle">(Doctor/Caregiver)</text>
+  
+  <!-- Layer 2: AI Engine -->
+  <rect x="380" y="90" width="450" height="330" class="layer-box"/>
+  <text x="605" y="115" class="layer-title" text-anchor="middle">AI Engine (Backend)</text>
+  
+  <!-- DL Component -->
+  <rect x="400" y="135" width="190" height="75" class="component-box"/>
+  <text x="495" y="157" class="component-title" text-anchor="middle">Deep Learning Engine</text>
+  <text x="495" y="173" class="component-text" text-anchor="middle">• Risk Assessment Modeling</text>
+  <text x="495" y="187" class="component-text" text-anchor="middle">• Nutrient Requirement Prediction</text>
+  <text x="495" y="201" class="component-text" text-anchor="middle">• User Profiling</text>
+  
+  <!-- Generative AI Component -->
+  <rect x="620" y="135" width="190" height="75" class="component-box"/>
+  <text x="715" y="157" class="component-title" text-anchor="middle">Generative AI (LLM)</text>
+  <text x="715" y="173" class="component-text" text-anchor="middle">• Personalized Meal Synthesis</text>
+  <text x="715" y="187" class="component-text" text-anchor="middle">• Recipe Generation</text>
+  <text x="715" y="201" class="component-text" text-anchor="middle">• Conversational Chatbot</text>
+  
+  <!-- Safety Guardrail -->
+  <rect x="400" y="230" width="410" height="100" class="safety-box"/>
+  <text x="605" y="252" class="component-title" text-anchor="middle">⚠ Safety Guardrail Layer</text>
+  
+  <rect x="420" y="265" width="180" height="55" class="component-box"/>
+  <text x="510" y="283" class="component-title" text-anchor="middle">Medical Constraint Engine</text>
+  <text x="510" y="297" class="component-text" text-anchor="middle">• Sodium/Potassium Limits</text>
+  <text x="510" y="309" class="component-text" text-anchor="middle">• Carbohydrate Control (T2DM)</text>
+  <text x="510" y="321" class="component-text" text-anchor="middle">• Phosphorus Control (CKD)</text>
+  
+  <rect x="620" y="265" width="180" height="55" class="component-box"/>
+  <text x="710" y="283" class="component-title" text-anchor="middle">Real-Time Adaptation</text>
+  <text x="710" y="297" class="component-text" text-anchor="middle">• Deviation Detection</text>
+  <text x="710" y="309" class="component-text" text-anchor="middle">• Dynamic Recalculation</text>
+  <text x="710" y="321" class="component-text" text-anchor="middle">• Alert Generation</text>
+  
+  <!-- Feedback Loop -->
+  <rect x="400" y="350" width="410" height="55" class="component-box"/>
+  <text x="605" y="372" class="component-title" text-anchor="middle">Feedback & Learning System</text>
+  <text x="605" y="386" class="component-text" text-anchor="middle">User preferences • Adherence tracking • Continuous improvement</text>
+  <text x="605" y="398" class="component-text" text-anchor="middle">Behavioral pattern analysis • Long-term outcome monitoring</text>
+  
+  <!-- Layer 3: Knowledge Base -->
+  <rect x="870" y="90" width="280" height="330" class="layer-box"/>
+  <text x="1010" y="115" class="layer-title" text-anchor="middle">Knowledge Base</text>
+  
+  <rect x="890" y="135" width="240" height="65" class="data-box"/>
+  <text x="1010" y="157" class="component-title" text-anchor="middle">Indian Food Database</text>
+  <text x="1010" y="173" class="component-text" text-anchor="middle">• IFCT 2017 (528 food items)</text>
+  <text x="1010" y="185" class="component-text" text-anchor="middle">• Indian Food 101 (255 recipes)</text>
+  <text x="1010" y="197" class="component-text" text-anchor="middle">• Open Food Facts India</text>
+  
+  <rect x="890" y="215" width="240" height="65" class="data-box"/>
+  <text x="1010" y="237" class="component-title" text-anchor="middle">Patient Health Data</text>
+  <text x="1010" y="253" class="component-text" text-anchor="middle">• Synthetic Patients (Synthea)</text>
+  <text x="1010" y="265" class="component-text" text-anchor="middle">• Indian Population Stats</text>
+  <text x="1010" y="277" class="component-text" text-anchor="middle">• Clinical Guidelines</text>
+  
+  <rect x="890" y="295" width="240" height="115" class="data-box"/>
+  <text x="1010" y="317" class="component-title" text-anchor="middle">Medical Knowledge</text>
+  <text x="1010" y="333" class="component-text" text-anchor="middle">• Disease-Specific Dietary Guidelines</text>
+  <text x="1010" y="345" class="component-text" text-anchor="middle">  - T2DM (Diabetes)</text>
+  <text x="1010" y="357" class="component-text" text-anchor="middle">  - CKD (Kidney Disease)</text>
+  <text x="1010" y="369" class="component-text" text-anchor="middle">  - Hypertension</text>
+  <text x="1010" y="381" class="component-text" text-anchor="middle">• Nutrient Interaction Rules</text>
+  <text x="1010" y="393" class="component-text" text-anchor="middle">• Medication-Food Interactions</text>
+  
+  <!-- Arrows: Client to AI Engine -->
+  <path d="M 330 160 L 400 160" class="arrow"/>
+  <text x="365" y="155" class="arrow-text" text-anchor="middle">Patient Data</text>
+  
+  <path d="M 190 290 L 190 450 L 400 450 L 400 400" class="arrow"/>
+  <text x="280" y="445" class="arrow-text">Meal Deviations</text>
+  
+  <!-- Arrows: DL to LLM -->
+  <path d="M 590 172 L 620 172" class="arrow"/>
+  <text x="605" y="167" class="arrow-text" text-anchor="middle">Context</text>
+  
+  <!-- Arrows: LLM to Safety -->
+  <path d="M 715 210 L 715 265" class="arrow"/>
+  <text x="725" y="240" class="arrow-text">Generated Plans</text>
+  
+  <!-- Arrows: Safety to Client -->
+  <path d="M 400 295 L 330 250" class="arrow"/>
+  <text x="350" y="265" class="arrow-text">Safe Recommendations</text>
+  
+  <!-- Arrows: Knowledge Base to AI -->
+  <path d="M 890 167 L 810 167" class="arrow"/>
+  <text x="850" y="162" class="arrow-text" text-anchor="middle">Food Data</text>
+  
+  <path d="M 890 247 L 590 185" class="arrow"/>
+  <text x="720" y="210" class="arrow-text">Clinical Data</text>
+  
+  <path d="M 890 350 L 810 310" class="arrow"/>
+  <text x="850" y="325" class="arrow-text" text-anchor="middle">Guidelines</text>
+  
+  <!-- Dotted arrows: Supervisor oversight -->
+  <path d="M 252 200 L 252 100 L 710 100 L 710 265" class="dotted-arrow"/>
+  <text x="480" y="95" class="arrow-text" text-anchor="middle">Supervision & Alerts</text>
+  
+  <!-- Key Features Box -->
+  <rect x="50" y="460" width="280" height="160" class="layer-box"/>
+  <text x="190" y="485" class="layer-title" text-anchor="middle">Key Features</text>
+  
+  <text x="70" y="510" class="component-title">✓ Personalized Diet Plans</text>
+  <text x="75" y="525" class="component-text">Real-time adaptation based on user behavior</text>
+  
+  <text x="70" y="545" class="component-title">✓ Multi-Disease Support</text>
+  <text x="75" y="560" class="component-text">T2DM, CKD, Hypertension management</text>
+  
+  <text x="70" y="580" class="component-title">✓ Safety-First Approach</text>
+  <text x="75" y="595" class="component-text">Medical constraints enforced automatically</text>
+  
+  <!-- Technology Stack Box -->
+  <rect x="380" y="460" width="450" height="160" class="layer-box"/>
+  <text x="605" y="485" class="layer-title" text-anchor="middle">Technology Stack</text>
+  
+  <text x="400" y="510" class="component-title">AI/ML:</text>
+  <text x="405" y="525" class="component-text">Deep Learning (TensorFlow/PyTorch) • LLM (GPT/Claude) • RAG</text>
+  
+  <text x="400" y="545" class="component-title">Backend:</text>
+  <text x="405" y="560" class="component-text">Python • FastAPI • Federated Learning • FHIR Integration</text>
+  
+  <text x="400" y="580" class="component-title">Mobile:</text>
+  <text x="405" y="595" class="component-text">React Native / Flutter • Offline-first architecture</text>
+  
+  <!-- Target Outcomes Box -->
+  <rect x="870" y="460" width="280" height="160" class="layer-box"/>
+  <text x="1010" y="485" class="layer-title" text-anchor="middle">Expected Outcomes</text>
+  
+  <text x="890" y="510" class="component-title">📊 Clinical Impact</text>
+  <text x="895" y="525" class="component-text">Improved adherence & health outcomes</text>
+  
+  <text x="890" y="545" class="component-title">🔒 Privacy & Security</text>
+  <text x="895" y="560" class="component-text">Federated learning, on-device processing</text>
+  
+  <text x="890" y="580" class="component-title">🌍 Cultural Relevance</text>
+  <text x="895" y="595" class="component-text">Indian cuisine-specific recommendations</text>
+  
+  <!-- Data Flow Legend -->
+  <text x="50" y="660" class="component-title">Data Flow:</text>
+  <line x1="150" y1="655" x2="200" y2="655" class="arrow"/>
+  <text x="210" y="660" class="component-text">Primary Flow</text>
+  <line x1="290" y1="655" x2="340" y2="655" class="dotted-arrow"/>
+  <text x="350" y="660" class="component-text">Supervision/Monitoring</text>
+  
+</svg>

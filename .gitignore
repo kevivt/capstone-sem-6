@@ -1,0 +1,47 @@
+# Python cache and bytecode
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Tooling caches
+.pytest_cache/
+.mypy_cache/
+.ipynb_checkpoints/
+
+# Local virtual environments
+.venv/
+venv/
+
+# OS/editor noise
+.DS_Store
+Thumbs.db
+
+# Local SQLite scratch files
+*.db
+
+# Python packaging/build artifacts
+build/
+dist/
+*.egg-info/
+
+# Logs and temp
+*.log
+tmp/
+
+# Node artifacts
+node_modules/
+
+# Large/raw medical datasets and archives (keep outside git)
+medical datasets/raw/brfss/
+medical datasets/raw/LLCP2024XPT/
+medical datasets/raw/**/*.XPT
+medical datasets/raw/**/*.xpt
+medical datasets/raw/**/*.sas7bdat
+medical datasets/raw/**/*.zip
+
+# Large generated intermediate tables
+medical datasets/large/
+preprocessed_outputs/
+
+# Optional: keep only canonical submitted outputs, ignore regenerated run outputs
+outputs/esa_phase2/

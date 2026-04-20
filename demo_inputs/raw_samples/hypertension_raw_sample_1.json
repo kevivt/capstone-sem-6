@@ -1,0 +1,21 @@
+{
+  "disease": "hypertension",
+  "user_id": "raw_demo_hypertension_1",
+  "raw_inputs": {
+    "age_years": 64,
+    "sex": "male",
+    "education_level": 5,
+    "current_smoker": true,
+    "cigarettes_per_day": 12,
+    "prior_stroke": false,
+    "body_mass_index": 31.8,
+    "diagnosed_diabetes": true,
+    "systolic_bp_mmhg": 156,
+    "diastolic_bp_mmhg": 96,
+    "fasting_glucose_mg_dl": 142
+  },
+  "profile": {
+    "calories_target": 2100
+  },
+  "top_n_foods": 5
+}

@@ -1,0 +1,3 @@
+dataset,candidate,model,accuracy,macro_f1,roc_auc
+ckd,project_final_model,DecisionTreeClassifier,0.753035,0.495961,0.585231
+ckd,best_baseline,DecisionTreeClassifier,0.753035,0.495961,0.585231

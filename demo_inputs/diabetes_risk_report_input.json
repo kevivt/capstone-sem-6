@@ -1,0 +1,18 @@
+{
+  "disease": "diabetes",
+  "user_id": "teacher_demo_03",
+  "features": {
+    "Pregnancies": 0.45,
+    "Glucose": 0.90,
+    "BloodPressure": 0.64,
+    "SkinThickness": 0.55,
+    "Insulin": 0.81,
+    "BMI": 0.74,
+    "DiabetesPedigreeFunction": 0.68,
+    "Age": 0.63
+  },
+  "profile": {
+    "calories_target": 1900
+  },
+  "top_n_foods": 5
+}

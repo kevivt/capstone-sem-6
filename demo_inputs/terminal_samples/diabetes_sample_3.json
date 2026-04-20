@@ -1,0 +1,18 @@
+{
+  "disease": "diabetes",
+  "user_id": "demo_diabetes_3",
+  "features": {
+    "Pregnancies": 0.4705882352941176,
+    "Glucose": 0.6643356643356644,
+    "BloodPressure": 0.5510204081632653,
+    "SkinThickness": 0.2717391304347826,
+    "Insulin": 0.2674897119341563,
+    "BMI": 0.5051124744376279,
+    "DiabetesPedigreeFunction": 0.1924276169265033,
+    "Age": 0.25
+  },
+  "profile": {
+    "calories_target": 2000
+  },
+  "top_n_foods": 5
+}
