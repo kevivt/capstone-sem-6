@@ -1,0 +1,13 @@
+{
+  "disease": "diabetes",
+  "raw_inputs": {
+    "age_years": 62,
+    "sex": "male",
+    "body_mass_index": 32.2,
+    "current_smoker": false,
+    "diagnosed_hypertension": true,
+    "systolic_bp_mmhg": 154,
+    "diastolic_bp_mmhg": 94,
+    "fasting_glucose_mg_dl": 178
+  }
+}

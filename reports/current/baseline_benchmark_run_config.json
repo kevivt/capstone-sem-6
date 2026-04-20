@@ -1,0 +1,5 @@
+{
+  "max_train_rows": 120000,
+  "sampling": "stratified",
+  "sampling_random_state": 42
+}

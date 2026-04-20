@@ -1,0 +1,100 @@
+{
+  "disease": "hypertension",
+  "model": "LogisticRegression",
+  "predicted_class": 1,
+  "raw_model_prediction": 1,
+  "risk_score": 0.996314,
+  "risk_level": "high",
+  "risk_level_display": "HIGH",
+  "thresholds": {
+    "moderate": 0.35,
+    "high": 0.9
+  },
+  "threshold_band": "above_high",
+  "major_risk_factors": [
+    "age",
+    "male",
+    "diabetes"
+  ],
+  "top_factors": [
+    {
+      "feature": "age",
+      "importance": 5.51074737,
+      "relative_importance": 0.31684528
+    },
+    {
+      "feature": "male",
+      "importance": 4.73704835,
+      "relative_importance": 0.27236077
+    },
+    {
+      "feature": "BMI",
+      "importance": 3.33005429,
+      "relative_importance": 0.19146441
+    },
+    {
+      "feature": "diabetes",
+      "importance": 1.81869465,
+      "relative_importance": 0.10456745
+    },
+    {
+      "feature": "education",
+      "importance": 1.05203261,
+      "relative_importance": 0.06048754
+    },
+    {
+      "feature": "prevalentStroke",
+      "importance": 0.35107168,
+      "relative_importance": 0.02018518
+    },
+    {
+      "feature": "cigsPerDay",
+      "importance": 0.33541028,
+      "relative_importance": 0.01928471
+    },
+    {
+      "feature": "currentSmoker",
+      "importance": 0.2574909,
+      "relative_importance": 0.01480467
+    },
+    {
+      "feature": "sysBP",
+      "importance": 0.0,
+      "relative_importance": 0.0
+    },
+    {
+      "feature": "diaBP",
+      "importance": 0.0,
+      "relative_importance": 0.0
+    }
+  ],
+  "calibration_context": {
+    "disease": "hypertension",
+    "risk_level": "high",
+    "threshold_band": "above_high",
+    "strictness_multiplier": 1.25,
+    "major_risk_factors": [
+      "age",
+      "male",
+      "diabetes"
+    ]
+  },
+  "explanation_text": "Hypertension explanation: score=0.9963, level=high, band=above_high. Major factors: age, male, diabetes. Compatibility warnings were detected for some fields in the deployed model path.",
+  "validation_warnings": [
+    "The deployed hypertension model was trained on a reduced survey-style feature set. sysBP, diaBP, glucose, and source were constant in training and are forced to 0.0 for model compatibility."
+  ],
+  "transformed_features": {
+    "male": 1.0,
+    "age": 0.7741935483870968,
+    "education": 0.375,
+    "currentSmoker": 1.0,
+    "cigsPerDay": 0.12121212121212122,
+    "prevalentStroke": 0.0,
+    "BMI": 0.2801533470952522,
+    "sysBP": 0.0,
+    "diaBP": 0.0,
+    "glucose": 0.0,
+    "diabetes": 1.0,
+    "source": 0.0
+  }
+}

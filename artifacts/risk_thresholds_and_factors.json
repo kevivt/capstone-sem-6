@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-04-20T04:48:16.925089+00:00",
+  "generated_at": "2026-04-20T11:09:39.792583+00:00",
   "diseases": {
     "ckd": {
       "model": "DecisionTreeClassifier",
@@ -8,7 +8,7 @@
       },
       "target_col": "class",
       "thresholds": {
-        "moderate": 0.490566,
+        "moderate": 0.49,
         "high": 0.640566
       },
       "metrics": {
@@ -63,7 +63,20 @@
           "importance": 0.0,
           "relative_importance": 0.0
         }
-      ]
+      ],
+      "threshold_tuning": {
+        "applied_at_utc": "2026-04-20T11:09:39.792424+00:00",
+        "source": "reports/current/model_diagnostics/threshold_diagnostics_summary.csv",
+        "objective": "maximize_f1",
+        "old_moderate": 0.490566,
+        "new_moderate": 0.49,
+        "old_high": 0.640566,
+        "new_high": 0.640566,
+        "default_f1": 0.138399,
+        "best_f1": 0.138719,
+        "default_accuracy": 0.809105,
+        "best_accuracy": 0.806482
+      }
     },
     "hypertension": {
       "model": "LogisticRegression",
@@ -73,7 +86,7 @@
       },
       "target_col": "prevalentHyp",
       "thresholds": {
-        "moderate": 0.35,
+        "moderate": 0.1,
         "high": 0.9
       },
       "metrics": {
@@ -133,14 +146,27 @@
           "importance": 0.0,
           "relative_importance": 0.0
         }
-      ]
+      ],
+      "threshold_tuning": {
+        "applied_at_utc": "2026-04-20T11:09:39.792566+00:00",
+        "source": "reports/current/model_diagnostics/threshold_diagnostics_summary.csv",
+        "objective": "maximize_f1",
+        "old_moderate": 0.35,
+        "new_moderate": 0.1,
+        "old_high": 0.9,
+        "new_high": 0.9,
+        "default_f1": 0.913327,
+        "best_f1": 0.985698,
+        "default_accuracy": 0.84299,
+        "best_accuracy": 0.97204
+      }
     },
     "diabetes": {
       "model": "GaussianNB",
       "hyperparameters": {},
       "target_col": "Outcome",
       "thresholds": {
-        "moderate": 0.35,
+        "moderate": 0.1,
         "high": 0.9
       },
       "metrics": {
@@ -195,7 +221,20 @@
           "importance": 0.0,
           "relative_importance": 0.0
         }
-      ]
+      ],
+      "threshold_tuning": {
+        "applied_at_utc": "2026-04-20T11:09:39.792511+00:00",
+        "source": "reports/current/model_diagnostics/threshold_diagnostics_summary.csv",
+        "objective": "maximize_f1",
+        "old_moderate": 0.35,
+        "new_moderate": 0.1,
+        "old_high": 0.9,
+        "new_high": 0.9,
+        "default_f1": 0.803912,
+        "best_f1": 0.966346,
+        "default_accuracy": 0.68884,
+        "best_accuracy": 0.93676
+      }
     }
   }
 }

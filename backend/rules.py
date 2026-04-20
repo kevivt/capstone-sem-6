@@ -1,4 +1,4 @@
-from typing import Dict
+from typing import Any, Dict
 
 
 def classify_risk_level(risk_score: float, thresholds: Dict | None = None) -> str:
@@ -13,9 +13,58 @@ def classify_risk_level(risk_score: float, thresholds: Dict | None = None) -> st
     return "low"
 
 
-def build_plan(disease: str, risk_score: float, profile: Dict, thresholds: Dict | None = None) -> Dict:
+def build_calibration_context(
+    disease: str,
+    risk_score: float,
+    thresholds: Dict | None,
+    top_factors: list[Dict[str, Any]] | None = None,
+    transformed_features: Dict[str, Any] | None = None,
+) -> Dict[str, Any]:
+    t = thresholds or {}
+    moderate = float(t.get("moderate", 0.4))
+    high = float(t.get("high", 0.75))
+    risk_level = classify_risk_level(risk_score, t)
+    if risk_score >= high:
+        threshold_band = "above_high"
+    elif risk_score >= moderate:
+        threshold_band = "moderate_to_high"
+    else:
+        threshold_band = "below_moderate"
+
+    candidates = top_factors or []
+    feature_values = transformed_features or {}
+    highlighted: list[str] = []
+    for item in candidates[:6]:
+        feature = str(item.get("feature", "")).strip()
+        if not feature:
+            continue
+        value = float(feature_values.get(feature, 0.0))
+        rel_importance = float(item.get("relative_importance", 0.0))
+        if value >= 0.5 or rel_importance >= 0.20:
+            highlighted.append(feature)
+
+    strictness = {"low": 1.0, "moderate": 1.1, "high": 1.25}.get(risk_level, 1.0)
+    return {
+        "disease": disease,
+        "risk_level": risk_level,
+        "threshold_band": threshold_band,
+        "strictness_multiplier": strictness,
+        "major_risk_factors": highlighted[:4],
+    }
+
+
+def build_plan(
+    disease: str,
+    risk_score: float,
+    profile: Dict,
+    thresholds: Dict | None = None,
+    calibration_context: Dict[str, Any] | None = None,
+) -> Dict:
     base_calories = int(profile.get("calories_target", 2000))
-    risk_level = classify_risk_level(risk_score, thresholds)
+    context = calibration_context or build_calibration_context(disease, risk_score, thresholds)
+    risk_level = context.get("risk_level", classify_risk_level(risk_score, thresholds))
+    threshold_band = str(context.get("threshold_band", "unknown"))
+    major_factors = list(context.get("major_risk_factors", []))
 
     diet_focus = []
     sugar_limit_g = None
@@ -69,6 +118,21 @@ def build_plan(disease: str, risk_score: float, profile: Dict, thresholds: Dict 
     protein_ratio = 0.18 if disease == "ckd" and risk_level == "high" else 0.20
     carb_ratio = 0.40 if disease == "diabetes" and risk_level == "high" else 0.42 if disease == "diabetes" else 0.45
     fat_ratio = max(0.25, 1.0 - protein_ratio - carb_ratio)
+
+    if threshold_band == "above_high":
+        sodium_limit = int(max(1200, round(sodium_limit * 0.9)))
+        if disease == "diabetes":
+            sugar_limit_g = int((sugar_limit_g or 20) * 0.85)
+        if disease == "ckd":
+            phosphorus_limit_mg = int((phosphorus_limit_mg or 800) * 0.9)
+
+    if major_factors:
+        focus_line = "Key modeled risk factors: " + ", ".join(major_factors)
+        diet_focus = [focus_line] + diet_focus
+        note = f"{note} Diet calibrated using threshold band '{threshold_band}' and model factor profile."
+    else:
+        note = f"{note} Diet calibrated using threshold band '{threshold_band}'."
+
     return {
         "calories_target": calories_target,
         "protein_target_g": int(calories_target * protein_ratio / 4),
@@ -81,6 +145,7 @@ def build_plan(disease: str, risk_score: float, profile: Dict, thresholds: Dict 
         "fiber_target_g": fiber_target_g,
         "fluid_target_ml": fluid_target_ml,
         "diet_focus": diet_focus,
+        "calibration_context": context,
         "recommendation_note": note,
     }
 

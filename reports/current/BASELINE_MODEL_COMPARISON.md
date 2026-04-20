@@ -34,7 +34,7 @@ Training row cap per dataset: 120000
 | --- | --- | --- | --- | --- | --- | --- | --- | --- |
 | ckd | decision_tree | DecisionTreeClassifier | 120000 | 91118 | 0.753035 | 0.495961 | 0.585231 | False |
 | ckd | project_final_model | DecisionTreeClassifier | 120000 | 91118 | 0.753035 | 0.495961 | 0.585231 | True |
-| ckd | random_forest | RandomForestClassifier | 120000 | 91118 | 0.728341 | 0.487703 | 0.630633 | False |
+| ckd | random_forest | RandomForestClassifier | 120000 | 91118 | 0.728341 | 0.487703 | 0.630632 | False |
 | ckd | knn_k5 | KNeighborsClassifier | 120000 | 91118 | 0.686440 | 0.473578 | 0.629385 | False |
 | ckd | logistic_regression | LogisticRegression | 120000 | 91118 | 0.587282 | 0.441963 | 0.713646 | False |
 | ckd | gaussian_nb | GaussianNB | 120000 | 91118 | 0.478775 | 0.384597 | 0.705172 | False |

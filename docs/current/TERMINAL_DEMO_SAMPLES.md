@@ -1,6 +1,9 @@
 # Terminal Demo Samples
 
-This guide reflects the current full-feature serving models.
+This guide reflects the current serving models and both terminal modes:
+
+- model-ready feature input mode
+- patient-friendly raw-input mode
 
 ## 1. Open the Project
 
@@ -43,8 +46,44 @@ To run all demo files:
 python scripts/run_demo_samples.py
 ```
 
-## 5. Important Note
+## 5. Raw Input Mode (New)
 
-- Inputs are still model-space values, not patient-friendly raw values.
-- This is intentional for now because the active models once again use full disease-specific column sets.
-- The next implementation step is a proper raw-user-input layer that maps normal patient measurements into these feature spaces.
+Show raw templates:
+
+```powershell
+python scripts/predict_from_terminal.py --disease ckd --show-raw-template
+python scripts/predict_from_terminal.py --disease hypertension --show-raw-template
+python scripts/predict_from_terminal.py --disease diabetes --show-raw-template
+```
+
+Run raw sample files:
+
+```powershell
+python scripts/predict_from_terminal.py --raw-input demo_inputs/raw_samples/ckd_raw_sample_1.json
+python scripts/predict_from_terminal.py --raw-input demo_inputs/raw_samples/hypertension_raw_sample_1.json
+python scripts/predict_from_terminal.py --raw-input demo_inputs/raw_samples/diabetes_raw_sample_1.json
+```
+
+Explanation-first raw demo:
+
+```powershell
+python scripts/predict_from_terminal.py --raw-input demo_inputs/raw_samples/ckd_explain_raw_sample_1.json --explain-raw
+python scripts/predict_from_terminal.py --raw-input demo_inputs/raw_samples/hypertension_explain_raw_sample_1.json --explain-raw
+python scripts/predict_from_terminal.py --raw-input demo_inputs/raw_samples/diabetes_explain_raw_sample_1.json --explain-raw
+```
+
+Guided raw entry:
+
+```powershell
+python scripts/predict_from_terminal.py --guided-raw
+```
+
+## 6. Important Note
+
+- The raw-input flow maps patient-friendly values to deployed feature schema order.
+- Some deployed artifacts still rely on reduced survey-style signals; warnings are returned when specific fields are forced/defaulted for compatibility.
+- For backend + plan sensitivity validation in one command:
+
+```powershell
+python scripts/validate_raw_flow.py
+```

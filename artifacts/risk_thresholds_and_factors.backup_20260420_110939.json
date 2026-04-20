@@ -1,0 +1,201 @@
+{
+  "generated_at": "2026-04-20T04:48:16.925089+00:00",
+  "diseases": {
+    "ckd": {
+      "model": "DecisionTreeClassifier",
+      "hyperparameters": {
+        "random_state": 42
+      },
+      "target_col": "class",
+      "thresholds": {
+        "moderate": 0.490566,
+        "high": 0.640566
+      },
+      "metrics": {
+        "roc_auc": 0.591213,
+        "precision": 0.092369,
+        "recall": 0.300864,
+        "f1": 0.141344
+      },
+      "top_factors": [
+        {
+          "feature": "BMI",
+          "importance": 0.66679929,
+          "relative_importance": 0.66679929
+        },
+        {
+          "feature": "age",
+          "importance": 0.30546209,
+          "relative_importance": 0.30546209
+        },
+        {
+          "feature": "male",
+          "importance": 0.02534341,
+          "relative_importance": 0.02534341
+        },
+        {
+          "feature": "diabetes",
+          "importance": 0.00239522,
+          "relative_importance": 0.00239522
+        },
+        {
+          "feature": "sysBP",
+          "importance": 0.0,
+          "relative_importance": 0.0
+        },
+        {
+          "feature": "diaBP",
+          "importance": 0.0,
+          "relative_importance": 0.0
+        },
+        {
+          "feature": "glucose",
+          "importance": 0.0,
+          "relative_importance": 0.0
+        },
+        {
+          "feature": "prevalentHyp",
+          "importance": 0.0,
+          "relative_importance": 0.0
+        },
+        {
+          "feature": "source",
+          "importance": 0.0,
+          "relative_importance": 0.0
+        }
+      ]
+    },
+    "hypertension": {
+      "model": "LogisticRegression",
+      "hyperparameters": {
+        "max_iter": 1000,
+        "random_state": 42
+      },
+      "target_col": "prevalentHyp",
+      "thresholds": {
+        "moderate": 0.35,
+        "high": 0.9
+      },
+      "metrics": {
+        "roc_auc": 0.926376,
+        "precision": 0.981843,
+        "recall": 0.999924,
+        "f1": 0.990801
+      },
+      "top_factors": [
+        {
+          "feature": "age",
+          "importance": 5.51074737,
+          "relative_importance": 0.31684528
+        },
+        {
+          "feature": "male",
+          "importance": 4.73704835,
+          "relative_importance": 0.27236077
+        },
+        {
+          "feature": "BMI",
+          "importance": 3.33005429,
+          "relative_importance": 0.19146441
+        },
+        {
+          "feature": "diabetes",
+          "importance": 1.81869465,
+          "relative_importance": 0.10456745
+        },
+        {
+          "feature": "education",
+          "importance": 1.05203261,
+          "relative_importance": 0.06048754
+        },
+        {
+          "feature": "prevalentStroke",
+          "importance": 0.35107168,
+          "relative_importance": 0.02018518
+        },
+        {
+          "feature": "cigsPerDay",
+          "importance": 0.33541028,
+          "relative_importance": 0.01928471
+        },
+        {
+          "feature": "currentSmoker",
+          "importance": 0.2574909,
+          "relative_importance": 0.01480467
+        },
+        {
+          "feature": "sysBP",
+          "importance": 0.0,
+          "relative_importance": 0.0
+        },
+        {
+          "feature": "diaBP",
+          "importance": 0.0,
+          "relative_importance": 0.0
+        }
+      ]
+    },
+    "diabetes": {
+      "model": "GaussianNB",
+      "hyperparameters": {},
+      "target_col": "Outcome",
+      "thresholds": {
+        "moderate": 0.35,
+        "high": 0.9
+      },
+      "metrics": {
+        "roc_auc": 0.899047,
+        "precision": 0.960558,
+        "recall": 0.984529,
+        "f1": 0.972396
+      },
+      "top_factors": [
+        {
+          "feature": "male",
+          "importance": 0.01690931,
+          "relative_importance": 0.43190423
+        },
+        {
+          "feature": "age",
+          "importance": 0.01492758,
+          "relative_importance": 0.38128605
+        },
+        {
+          "feature": "BMI",
+          "importance": 0.00575852,
+          "relative_importance": 0.14708636
+        },
+        {
+          "feature": "prevalentHyp",
+          "importance": 0.00155519,
+          "relative_importance": 0.03972337
+        },
+        {
+          "feature": "sysBP",
+          "importance": 0.0,
+          "relative_importance": 0.0
+        },
+        {
+          "feature": "diaBP",
+          "importance": 0.0,
+          "relative_importance": 0.0
+        },
+        {
+          "feature": "glucose",
+          "importance": 0.0,
+          "relative_importance": 0.0
+        },
+        {
+          "feature": "currentSmoker",
+          "importance": 0.0,
+          "relative_importance": 0.0
+        },
+        {
+          "feature": "source",
+          "importance": 0.0,
+          "relative_importance": 0.0
+        }
+      ]
+    }
+  }
+}

@@ -5,6 +5,7 @@ from typing import Any, Dict
 
 from pydantic import ValidationError
 
+from backend.model_registry import registry
 from backend.schemas import CKDRawInput, DiabetesRawInput, HypertensionRawInput
 
 
@@ -121,13 +122,66 @@ def get_raw_field_metadata(disease: str) -> list[dict[str, Any]]:
 
 
 def map_raw_payload(disease: str, raw_inputs: Dict[str, Any]) -> RawMappingResult:
+    unknown_fields = _find_unknown_raw_fields(disease, raw_inputs)
     if disease == "ckd":
-        return _map_ckd(raw_inputs)
-    if disease == "hypertension":
-        return _map_hypertension(raw_inputs)
-    if disease == "diabetes":
-        return _map_diabetes(raw_inputs)
-    raise ValueError(f"Unsupported disease '{disease}'.")
+        result = _map_ckd(raw_inputs)
+    elif disease == "hypertension":
+        result = _map_hypertension(raw_inputs)
+    elif disease == "diabetes":
+        result = _map_diabetes(raw_inputs)
+    else:
+        raise ValueError(f"Unsupported disease '{disease}'.")
+
+    if unknown_fields:
+        result.validation_warnings.append(
+            "Unknown raw-input fields were ignored: " + ", ".join(sorted(unknown_fields))
+        )
+
+    result.transformed_features = _align_to_artifact_feature_order(
+        disease, result.transformed_features, result.validation_warnings
+    )
+    return result
+
+
+def _find_unknown_raw_fields(disease: str, raw_inputs: Dict[str, Any]) -> set[str]:
+    valid_names = {field["name"] for field in FIELD_METADATA.get(disease, [])}
+    return {key for key in raw_inputs.keys() if key not in valid_names}
+
+
+def _align_to_artifact_feature_order(
+    disease: str,
+    transformed_features: Dict[str, float],
+    warnings: list[str],
+) -> Dict[str, float]:
+    registry.load_feature_metadata()
+    expected_order = registry.features.get(disease, [])
+    if not expected_order:
+        warnings.append(
+            "No artifact feature metadata found; using mapper output order as fallback."
+        )
+        return transformed_features
+
+    aligned: Dict[str, float] = {}
+    missing: list[str] = []
+    for feature in expected_order:
+        if feature in transformed_features:
+            aligned[feature] = float(transformed_features[feature])
+        else:
+            aligned[feature] = 0.0
+            missing.append(feature)
+
+    extra = [k for k in transformed_features.keys() if k not in expected_order]
+    if missing:
+        warnings.append(
+            "Mapper did not produce some expected model features; defaulted to 0.0: "
+            + ", ".join(missing)
+        )
+    if extra:
+        warnings.append(
+            "Mapper produced extra features not used by deployed artifact: "
+            + ", ".join(extra)
+        )
+    return aligned
 
 
 def _map_ckd(raw_inputs: Dict[str, Any]) -> RawMappingResult:

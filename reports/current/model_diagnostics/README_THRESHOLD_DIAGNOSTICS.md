@@ -1,0 +1,19 @@
+# Model Diagnostics and Threshold Tuning
+
+This report evaluates default threshold (0.50) vs tuned threshold (best F1) on test sets.
+
+## Summary
+
+| dataset      |   roc_auc |   default_threshold |   default_accuracy |   default_precision |   default_recall |   default_f1 |   best_f1_threshold |   best_accuracy |   best_precision |   best_recall |   best_f1 |
+|:-------------|----------:|--------------------:|-------------------:|--------------------:|-----------------:|-------------:|--------------------:|----------------:|-----------------:|--------------:|----------:|
+| ckd          |  0.591821 |                 0.5 |           0.809105 |            0.090479 |         0.294229 |     0.138399 |                0.49 |        0.806482 |         0.090302 |      0.299073 |  0.138719 |
+| diabetes     |  0.898102 |                 0.5 |           0.68884  |            0.991775 |         0.675886 |     0.803912 |                0.1  |        0.93676  |         0.970633 |      0.962096 |  0.966346 |
+| hypertension |  0.926586 |                 0.5 |           0.84299  |            0.996723 |         0.84281  |     0.913327 |                0.1  |        0.97204  |         0.989819 |      0.981611 |  0.985698 |
+
+## Generated Artifacts
+
+- `{disease}_threshold_curve.png`
+- `{disease}_default_t0.50_confusion_matrix.png`
+- `{disease}_bestf1_confusion_matrix.png`
+- `{disease}_threshold_metrics.csv`
+- `threshold_diagnostics_summary.csv`

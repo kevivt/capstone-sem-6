@@ -9,7 +9,9 @@ if str(PROJECT_DIR) not in sys.path:
 
 from backend.model_registry import registry
 from backend.raw_input import get_raw_field_metadata, get_raw_template, map_raw_payload
-from backend.rules import classify_risk_level
+from backend.reporting import build_explanation_text
+from backend.rules import build_calibration_context, classify_risk_level
+from backend.db import init_db, insert_risk_explanation
 
 
 def parse_args() -> argparse.Namespace:
@@ -38,6 +40,17 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument("--interactive", action="store_true", help="Prompt for model-ready features (requires --disease).")
     parser.add_argument("--guided", action="store_true", help="Guided flow for model-ready features.")
     parser.add_argument("--guided-raw", action="store_true", help="Guided flow for patient-friendly raw inputs.")
+    parser.add_argument(
+        "--explain-raw",
+        action="store_true",
+        help="Return explanation-first raw prediction output (requires raw-input mode).",
+    )
+    parser.add_argument(
+        "--save-output",
+        type=str,
+        default=None,
+        help="Optional path to save result JSON output.",
+    )
     parser.add_argument("--show-template", action="store_true", help="Print required model feature columns and exit.")
     parser.add_argument("--show-raw-template", action="store_true", help="Print raw-input template and exit.")
     return parser.parse_args()
@@ -210,6 +223,7 @@ def main() -> None:
         return
 
     transformed_features = None
+    raw_inputs = None
     validation_warnings: list[str] = []
 
     if args.guided_raw:
@@ -218,12 +232,14 @@ def main() -> None:
         mapped = map_raw_payload(disease, raw_inputs)
         disease = mapped.disease
         transformed_features = mapped.transformed_features
+        raw_inputs = mapped.raw_inputs
         validation_warnings = mapped.validation_warnings
     elif args.raw_input or args.raw_features:
         disease, raw_inputs = build_raw_payload(args)
         mapped = map_raw_payload(disease, raw_inputs)
         disease = mapped.disease
         transformed_features = mapped.transformed_features
+        raw_inputs = mapped.raw_inputs
         validation_warnings = mapped.validation_warnings
     elif args.guided:
         disease = args.disease if args.disease else prompt_disease()
@@ -237,10 +253,19 @@ def main() -> None:
         disease, transformed_features = build_payload(args)
 
     pred, score, model_name = registry.predict(disease, transformed_features)
-    thresholds = registry.get_risk_profile(disease).get("thresholds", {})
+    profile_cfg = registry.get_risk_profile(disease)
+    thresholds = profile_cfg.get("thresholds", {})
+    top_factors = profile_cfg.get("top_factors", [])
     risk_level = classify_risk_level(score, thresholds)
     moderate = float(thresholds.get("moderate", 0.5))
     predicted_class = int(1 if score >= moderate else 0)
+    calibration_context = build_calibration_context(
+        disease=disease,
+        risk_score=score,
+        thresholds=thresholds,
+        top_factors=top_factors,
+        transformed_features=transformed_features,
+    )
 
     result = {
         "disease": disease,
@@ -254,10 +279,46 @@ def main() -> None:
             "moderate": round(float(thresholds.get("moderate", 0.5)), 6),
             "high": round(float(thresholds.get("high", 0.75)), 6),
         },
+        "threshold_band": calibration_context.get("threshold_band"),
+        "major_risk_factors": calibration_context.get("major_risk_factors", []),
     }
+
+    is_raw_mode = args.raw_input or args.raw_features or args.guided_raw
+    if args.explain_raw:
+        if not is_raw_mode:
+            raise ValueError("--explain-raw requires one of --raw-input, --raw-features, or --guided-raw.")
+        result["top_factors"] = top_factors
+        result["calibration_context"] = calibration_context
+        result["explanation_text"] = build_explanation_text(
+            disease=disease,
+            risk_score=score,
+            risk_level=risk_level,
+            threshold_band=str(calibration_context.get("threshold_band", "below_moderate")),
+            major_risk_factors=list(calibration_context.get("major_risk_factors", [])),
+            validation_warnings=validation_warnings,
+        )
+        init_db()
+        insert_risk_explanation(
+            disease=disease,
+            model_name=model_name,
+            predicted_class=predicted_class,
+            risk_score=score,
+            risk_level=risk_level,
+            threshold_moderate=float(thresholds.get("moderate", 0.5)),
+            threshold_high=float(thresholds.get("high", 0.75)),
+            threshold_band=str(calibration_context.get("threshold_band", "below_moderate")),
+            major_risk_factors=list(calibration_context.get("major_risk_factors", [])),
+            validation_warnings=validation_warnings,
+            raw_inputs=raw_inputs or {},
+            transformed_features=transformed_features,
+            top_factors=top_factors,
+            calibration_context=calibration_context,
+            explanation_text=result["explanation_text"],
+            source="terminal_explain_raw",
+        )
     if validation_warnings:
         result["validation_warnings"] = validation_warnings
-    if args.raw_input or args.raw_features or args.guided_raw:
+    if is_raw_mode:
         result["transformed_features"] = transformed_features
 
     print(f"Risk level for {disease.upper()}: {risk_level.upper()} (score={result['risk_score']})")
@@ -268,6 +329,11 @@ def main() -> None:
     if args.guided or args.guided_raw:
         print_patient_summary(disease, result)
     print(json.dumps(result, indent=2))
+    if args.save_output:
+        out_path = Path(args.save_output)
+        out_path.parent.mkdir(parents=True, exist_ok=True)
+        out_path.write_text(json.dumps(result, indent=2), encoding="utf-8")
+        print(f"Saved output JSON to: {out_path}")
 
 
 if __name__ == "__main__":

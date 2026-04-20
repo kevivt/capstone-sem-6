@@ -92,10 +92,17 @@ python scripts/predict_from_terminal.py --guided
 ## API Endpoints (Current)
 
 - `GET /health`
+- `GET /raw-input-template/{disease}`
 - `POST /predict-risk`
+- `POST /predict-risk-raw`
+- `POST /risk-explanation-raw`
+- `GET /risk-explanations`
 - `POST /recommend-plan`
 - `POST /log-meal`
 - `POST /risk-report`
+- `POST /risk-report-raw`
+
+Explain-raw requests are now persisted to SQLite in `risk_explanation_log` for audit/comparison over time.
 
 ## Model and Feature Contract
 

@@ -45,3 +45,11 @@ preprocessed_outputs/
 
 # Optional: keep only canonical submitted outputs, ignore regenerated run outputs
 outputs/esa_phase2/
+
+# Generated model diagnostics (bulky intermediate artifacts)
+reports/current/model_diagnostics/*_threshold_metrics.csv
+reports/current/model_diagnostics/*_default_t0.50_confusion_matrix.png
+
+# Generated nutrient candidate tables (keep only summary + plots)
+reports/current/nutrient_dataset/*_nutrient_candidates.csv
+reports/current/nutrient_dataset/*_top500_candidates.csv

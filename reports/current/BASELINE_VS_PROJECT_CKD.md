@@ -20,7 +20,7 @@
 | model | accuracy | macro_f1 | roc_auc |
 | --- | --- | --- | --- |
 | DecisionTreeClassifier | 0.753035 | 0.495961 | 0.585231 |
-| RandomForestClassifier | 0.728341 | 0.487703 | 0.630633 |
+| RandomForestClassifier | 0.728341 | 0.487703 | 0.630632 |
 | KNeighborsClassifier | 0.686440 | 0.473578 | 0.629385 |
 | LogisticRegression | 0.587282 | 0.441963 | 0.713646 |
 | GaussianNB | 0.478775 | 0.384597 | 0.705172 |

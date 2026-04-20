@@ -20,6 +20,9 @@ def run_smoke_test() -> None:
     health = client.get("/health")
     print("GET /health", health.status_code, health.json())
 
+    raw_template = client.get("/raw-input-template/ckd")
+    print("GET /raw-input-template/ckd", raw_template.status_code, raw_template.json())
+
     predict_payload = {
         "disease": "ckd",
         "user_id": "u_demo_01",
@@ -44,6 +47,42 @@ def run_smoke_test() -> None:
     }
     raw_predict = client.post("/predict-risk-raw", json=raw_predict_payload)
     print("POST /predict-risk-raw", raw_predict.status_code, raw_predict.json())
+
+    raw_explain = client.post(
+        "/risk-explanation-raw",
+        json={
+            "disease": "ckd",
+            "user_id": "u_demo_raw_explain_01",
+            "raw_inputs": raw_predict_payload["raw_inputs"],
+        },
+    )
+    print("POST /risk-explanation-raw", raw_explain.status_code, raw_explain.json())
+
+    explain_history = client.get(
+        "/risk-explanations",
+        params={"disease": "ckd", "source": "api_risk_explanation_raw", "limit": 3, "offset": 0},
+    )
+    print("GET /risk-explanations", explain_history.status_code, explain_history.json())
+
+    raw_predict_hyp_payload = {
+        "disease": "hypertension",
+        "user_id": "u_demo_raw_01_hyp",
+        "raw_inputs": {
+            "age_years": 64,
+            "sex": "male",
+            "education_level": 5,
+            "current_smoker": True,
+            "cigarettes_per_day": 9,
+            "prior_stroke": False,
+            "body_mass_index": 30.8,
+            "diagnosed_diabetes": True,
+            "systolic_bp_mmhg": 150,
+            "diastolic_bp_mmhg": 92,
+            "fasting_glucose_mg_dl": 144,
+        },
+    }
+    raw_predict_hyp = client.post("/predict-risk-raw", json=raw_predict_hyp_payload)
+    print("POST /predict-risk-raw (hypertension)", raw_predict_hyp.status_code, raw_predict_hyp.json())
 
     recommend_payload = {
         "user_id": "u_demo_01",

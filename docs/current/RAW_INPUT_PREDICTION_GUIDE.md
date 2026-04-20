@@ -11,6 +11,8 @@ The repository now supports:
 - raw patient-input prediction
 - raw patient-input risk reporting with diet calibration
 - guided raw terminal entry
+- strict feature-order alignment with `artifacts/*_features.json`
+- risk-band + top-factor aware diet calibration context
 
 ## New Backend Endpoints
 
@@ -32,6 +34,9 @@ Returns:
 - risk level
 - model name
 - transformed internal feature vector
+- thresholds used
+- threshold band (`below_moderate` / `moderate_to_high` / `above_high`)
+- major risk factors used for calibration (if available)
 - validation warnings
 
 ### `POST /risk-report-raw`
@@ -48,6 +53,20 @@ Returns:
 - validation warnings
 - disease-aware diet plan
 - recommended foods
+
+### `POST /risk-explanation-raw`
+Accepts:
+- `disease`
+- `raw_inputs`
+- optional `user_id`
+
+Returns:
+- transformed model features
+- risk score/level/class
+- thresholds + threshold band
+- major risk factors
+- concise explanation text
+- validation warnings
 
 ## Terminal Usage
 
@@ -69,6 +88,20 @@ Returns:
 
 ```powershell
 & ".\.venv\Scripts\python.exe" scripts\predict_from_terminal.py --guided-raw
+```
+
+### Explanation-first raw mode
+
+```powershell
+& ".\.venv\Scripts\python.exe" scripts\predict_from_terminal.py --raw-input demo_inputs\raw_samples\ckd_explain_raw_sample_1.json --explain-raw
+& ".\.venv\Scripts\python.exe" scripts\predict_from_terminal.py --raw-input demo_inputs\raw_samples\hypertension_explain_raw_sample_1.json --explain-raw
+& ".\.venv\Scripts\python.exe" scripts\predict_from_terminal.py --raw-input demo_inputs\raw_samples\diabetes_explain_raw_sample_1.json --explain-raw
+```
+
+Optional persistence (save output JSON):
+
+```powershell
+& ".\.venv\Scripts\python.exe" scripts\predict_from_terminal.py --raw-input demo_inputs\raw_samples\ckd_explain_raw_sample_1.json --explain-raw --save-output outputs\explanations\ckd_explain_result.json
 ```
 
 ## Important Assumption / Limitation
@@ -98,6 +131,14 @@ Because of that, some columns in the saved artifact feature sets were constant z
 
 For model compatibility, the raw-input mapping layer forces those fields to `0.0` when producing the transformed feature vector.
 
+The mapper then aligns the transformed vector to the exact deployed model feature order from:
+
+- `artifacts/ckd_features.json`
+- `artifacts/hypertension_features.json`
+- `artifacts/diabetes_features.json`
+
+Missing expected features are defaulted to `0.0` with explicit warnings, and extra mapper outputs are ignored with warnings.
+
 This means:
 - raw patient BP/glucose values are accepted for intake completeness
 - but some of them are not yet meaningfully used by the deployed models
@@ -116,6 +157,7 @@ This means:
 - `backend/app.py`
 - `backend/rules.py`
 - `backend/reporting.py`
+- `backend/model_registry.py` (feature-order contract used by mapper)
 - `scripts/predict_from_terminal.py`
 - `scripts/backend_smoke_test.py`
 - `demo_inputs/raw_samples/*.json`

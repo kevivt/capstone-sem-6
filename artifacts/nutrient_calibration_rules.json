@@ -1,0 +1,120 @@
+{
+  "generated_at": "2026-04-20T11:17:32.353280+00:00",
+  "source_dataset": "unified_food_kb_20260222_093221.csv",
+  "diseases": {
+    "ckd": {
+      "weights": {
+        "sodium_low_better": 0.4,
+        "potassium_low_better": 0.3,
+        "phosphorus_low_better": 0.2,
+        "completeness_high_better": 0.1
+      },
+      "caps": {
+        "low": {
+          "sodium_mg": 0.0,
+          "potassium_mg": 0.0,
+          "phosphorus_mg": 0.0,
+          "sugars_free_g": 20.5,
+          "carbs_g": 65.0,
+          "fiber_target_g": 0.21
+        },
+        "moderate": {
+          "sodium_mg": 0.0,
+          "potassium_mg": 0.0,
+          "phosphorus_mg": 0.0,
+          "sugars_free_g": 6.27,
+          "carbs_g": 56.0,
+          "fiber_target_g": 1.5
+        },
+        "high": {
+          "sodium_mg": 0.0,
+          "potassium_mg": 0.0,
+          "phosphorus_mg": 0.0,
+          "sugars_free_g": 2.5,
+          "carbs_g": 39.5,
+          "fiber_target_g": 3.2
+        }
+      },
+      "candidate_counts": {
+        "all_rows": 6313,
+        "top500": 500
+      }
+    },
+    "hypertension": {
+      "weights": {
+        "sodium_low_better": 0.45,
+        "fiber_high_better": 0.25,
+        "sugar_low_better": 0.15,
+        "completeness_high_better": 0.15
+      },
+      "caps": {
+        "low": {
+          "sodium_mg": 2.48,
+          "potassium_mg": 159.05,
+          "phosphorus_mg": 0.0,
+          "sugars_free_g": 1.8,
+          "carbs_g": 58.43,
+          "fiber_target_g": 6.25
+        },
+        "moderate": {
+          "sodium_mg": 0.0,
+          "potassium_mg": 0.0,
+          "phosphorus_mg": 0.0,
+          "sugars_free_g": 0.87,
+          "carbs_g": 46.0,
+          "fiber_target_g": 7.96
+        },
+        "high": {
+          "sodium_mg": 0.0,
+          "potassium_mg": 0.0,
+          "phosphorus_mg": 0.0,
+          "sugars_free_g": 0.01,
+          "carbs_g": 20.52,
+          "fiber_target_g": 10.0
+        }
+      },
+      "candidate_counts": {
+        "all_rows": 6313,
+        "top500": 500
+      }
+    },
+    "diabetes": {
+      "weights": {
+        "sugar_low_better": 0.4,
+        "fiber_high_better": 0.25,
+        "carbs_low_better": 0.2,
+        "completeness_high_better": 0.15
+      },
+      "caps": {
+        "low": {
+          "sodium_mg": 59.52,
+          "potassium_mg": 327.7,
+          "phosphorus_mg": 189.0,
+          "sugars_free_g": 0.28,
+          "carbs_g": 5.28,
+          "fiber_target_g": 0.0
+        },
+        "moderate": {
+          "sodium_mg": 35.95,
+          "potassium_mg": 249.0,
+          "phosphorus_mg": 53.94,
+          "sugars_free_g": 0.0,
+          "carbs_g": 2.65,
+          "fiber_target_g": 2.09
+        },
+        "high": {
+          "sodium_mg": 10.74,
+          "potassium_mg": 123.5,
+          "phosphorus_mg": 0.0,
+          "sugars_free_g": 0.0,
+          "carbs_g": 0.0,
+          "fiber_target_g": 3.39
+        }
+      },
+      "candidate_counts": {
+        "all_rows": 6313,
+        "top500": 500
+      }
+    }
+  }
+}

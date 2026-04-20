@@ -1,5 +1,6 @@
 from __future__ import annotations
 
+import json
 from pathlib import Path
 from typing import Any, Dict, List
 
@@ -8,6 +9,7 @@ import pandas as pd
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 FOOD_KB_PATH = BASE_DIR / "medical datasets" / "raw" / "unified_food_kb_20260222_093221.csv"
+NUTRIENT_CALIBRATION_PATH = BASE_DIR / "artifacts" / "nutrient_calibration_rules.json"
 
 
 class FoodKB:
@@ -63,8 +65,24 @@ class FoodKB:
 food_kb = FoodKB()
 
 
-def _score_foods(df: pd.DataFrame, disease: str, plan: Dict[str, Any]) -> pd.DataFrame:
+def _load_nutrient_calibration() -> Dict[str, Any]:
+    if not NUTRIENT_CALIBRATION_PATH.exists():
+        return {}
+    try:
+        return json.loads(NUTRIENT_CALIBRATION_PATH.read_text(encoding="utf-8"))
+    except Exception:
+        return {}
+
+
+def _disease_rules(disease: str) -> Dict[str, Any]:
+    cfg = _load_nutrient_calibration()
+    return cfg.get("diseases", {}).get(disease, {})
+
+
+def _score_foods(df: pd.DataFrame, disease: str, risk_level: str, plan: Dict[str, Any]) -> pd.DataFrame:
     work = df.copy()
+    rules = _disease_rules(disease)
+    weights = rules.get("weights", {})
 
     sodium_limit = float(plan.get("sodium_limit_mg", 2000))
     potassium_limit = float(plan.get("potassium_limit_mg", 3500))
@@ -76,10 +94,11 @@ def _score_foods(df: pd.DataFrame, disease: str, plan: Dict[str, Any]) -> pd.Dat
     work["score"] = 0.0
 
     if "sodium_mg" in work.columns:
-        work["score"] += (1.0 - (work["sodium_mg"].fillna(sodium_limit) / max(sodium_limit, 1.0))).clip(0, 1) * 0.4
+        sodium_w = float(weights.get("sodium_low_better", 0.4))
+        work["score"] += (1.0 - (work["sodium_mg"].fillna(sodium_limit) / max(sodium_limit, 1.0))).clip(0, 1) * sodium_w
 
     if "potassium_mg" in work.columns:
-        pot_weight = 0.35 if disease == "ckd" else 0.2
+        pot_weight = float(weights.get("potassium_low_better", 0.35 if disease == "ckd" else 0.2))
         work["score"] += (1.0 - (work["potassium_mg"].fillna(potassium_limit) / max(potassium_limit, 1.0))).clip(0, 1) * pot_weight
 
     if "energy_kcal" in work.columns:
@@ -87,16 +106,23 @@ def _score_foods(df: pd.DataFrame, disease: str, plan: Dict[str, Any]) -> pd.Dat
         work["score"] += (1.0 - (work["energy_kcal"].fillna(energy_target) / energy_target)).abs().clip(0, 1) * 0.1
 
     if disease == "diabetes" and "sugars_free_g" in work.columns:
-        work["score"] += (1.0 - (work["sugars_free_g"].fillna(sugar_limit) / max(sugar_limit, 1.0))).clip(0, 1) * 0.30
+        sugar_w = float(weights.get("sugar_low_better", 0.30))
+        work["score"] += (1.0 - (work["sugars_free_g"].fillna(sugar_limit) / max(sugar_limit, 1.0))).clip(0, 1) * sugar_w
+        if "carbs_g" in work.columns:
+            carbs_w = float(weights.get("carbs_low_better", 0.15))
+            work["score"] += (1.0 - (work["carbs_g"].fillna(plan.get("carb_target_g", 50)) / max(float(plan.get("carb_target_g", 50)), 1.0))).clip(0, 1) * carbs_w
 
     if disease == "hypertension" and "fiber_g" in work.columns:
-        work["score"] += (work["fiber_g"].fillna(0.0) / max(fiber_target, 1.0)).clip(0, 1) * 0.20
+        fiber_w = float(weights.get("fiber_high_better", 0.20))
+        work["score"] += (work["fiber_g"].fillna(0.0) / max(fiber_target, 1.0)).clip(0, 1) * fiber_w
 
     if disease == "ckd" and "phosphorus_mg" in work.columns:
-        work["score"] += (1.0 - (work["phosphorus_mg"].fillna(phosphorus_limit) / max(phosphorus_limit, 1.0))).clip(0, 1) * 0.30
+        phos_w = float(weights.get("phosphorus_low_better", 0.30))
+        work["score"] += (1.0 - (work["phosphorus_mg"].fillna(phosphorus_limit) / max(phosphorus_limit, 1.0))).clip(0, 1) * phos_w
 
     if "data_completeness" in work.columns:
-        work["score"] += work["data_completeness"].fillna(0.0).clip(0, 1) * 0.1
+        comp_w = float(weights.get("completeness_high_better", 0.1))
+        work["score"] += work["data_completeness"].fillna(0.0).clip(0, 1) * comp_w
 
     return work
 
@@ -115,11 +141,14 @@ def recommend_foods(disease: str, risk_level: str, plan: Dict[str, Any], top_n: 
     if key_cols:
         filtered = filtered[~((filtered[key_cols].fillna(0) <= 0).all(axis=1))]
 
+    rules = _disease_rules(disease)
+    caps = rules.get("caps", {}).get(risk_level, {})
+
     sodium_factor = {"low": 1.2, "moderate": 1.0, "high": 0.85}.get(risk_level, 1.0)
     potassium_factor = {"low": 1.2, "moderate": 1.0, "high": 0.85}.get(risk_level, 1.0)
 
-    sodium_cap = float(plan.get("sodium_limit_mg", 2000)) * sodium_factor
-    potassium_cap = float(plan.get("potassium_limit_mg", 3500)) * potassium_factor
+    sodium_cap = float(caps.get("sodium_mg", float(plan.get("sodium_limit_mg", 2000)) * sodium_factor))
+    potassium_cap = float(caps.get("potassium_mg", float(plan.get("potassium_limit_mg", 3500)) * potassium_factor))
 
     if "sodium_mg" in filtered.columns:
         filtered = filtered[(filtered["sodium_mg"].isna()) | (filtered["sodium_mg"] <= sodium_cap)]
@@ -127,17 +156,20 @@ def recommend_foods(disease: str, risk_level: str, plan: Dict[str, Any], top_n: 
         filtered = filtered[(filtered["potassium_mg"].isna()) | (filtered["potassium_mg"] <= potassium_cap)]
 
     if disease == "diabetes" and "sugars_free_g" in filtered.columns:
-        sugar_cap = float(plan.get("sugar_limit_g", 40) or 40)
+        sugar_cap = float(caps.get("sugars_free_g", float(plan.get("sugar_limit_g", 40) or 40)))
         filtered = filtered[(filtered["sugars_free_g"].isna()) | (filtered["sugars_free_g"] <= sugar_cap)]
+        if "carbs_g" in filtered.columns:
+            carbs_cap = float(caps.get("carbs_g", float(plan.get("carb_target_g", 220)) / 3.0))
+            filtered = filtered[(filtered["carbs_g"].isna()) | (filtered["carbs_g"] <= carbs_cap)]
 
     if disease == "ckd" and "phosphorus_mg" in filtered.columns:
-        phosphorus_cap = float(plan.get("phosphorus_limit_mg", 1200) or 1200)
+        phosphorus_cap = float(caps.get("phosphorus_mg", float(plan.get("phosphorus_limit_mg", 1200) or 1200)))
         filtered = filtered[(filtered["phosphorus_mg"].isna()) | (filtered["phosphorus_mg"] <= phosphorus_cap)]
 
     if filtered.empty:
         filtered = df.copy()
 
-    scored = _score_foods(filtered, disease, plan)
+    scored = _score_foods(filtered, disease, risk_level, plan)
     top = scored.sort_values("score", ascending=False).head(max(1, top_n))
 
     records = []
@@ -160,8 +192,18 @@ def recommend_foods(disease: str, risk_level: str, plan: Dict[str, Any], top_n: 
     return records
 
 
-def build_report_text(disease: str, risk_score: float, risk_level: str, top_factors: List[Dict[str, Any]]) -> str:
+def build_report_text(
+    disease: str,
+    risk_score: float,
+    risk_level: str,
+    top_factors: List[Dict[str, Any]],
+    calibration_context: Dict[str, Any] | None = None,
+) -> str:
     factor_list = ", ".join([str(item.get("feature")) for item in top_factors[:5]])
+    context = calibration_context or {}
+    threshold_band = context.get("threshold_band", "unknown")
+    major_factors = context.get("major_risk_factors", [])
+    major_factor_text = ", ".join(major_factors) if major_factors else "none highlighted"
     disease_guidance = {
         "ckd": "Meal calibration emphasizes sodium, potassium, protein, and phosphorus control.",
         "hypertension": "Meal calibration emphasizes sodium reduction, calorie discipline, and fiber-rich choices.",
@@ -171,7 +213,26 @@ def build_report_text(disease: str, risk_score: float, risk_level: str, top_fact
         f"{disease.title()} risk assessment completed. "
         f"Risk score is {risk_score:.4f} ({risk_level} risk band). "
         f"Most influential factors for this disease model include: {factor_list}. "
+        f"Threshold band: {threshold_band}. Highlighted risk factors for calibration: {major_factor_text}. "
         f"{disease_guidance} "
         "Diet recommendations are filtered from the unified nutrition knowledge base "
         "to align with disease-specific metabolic constraints."
+    )
+
+
+def build_explanation_text(
+    disease: str,
+    risk_score: float,
+    risk_level: str,
+    threshold_band: str,
+    major_risk_factors: List[str],
+    validation_warnings: List[str] | None = None,
+) -> str:
+    factor_text = ", ".join(major_risk_factors) if major_risk_factors else "no dominant factors surfaced"
+    warning_hint = ""
+    if validation_warnings:
+        warning_hint = " Compatibility warnings were detected for some fields in the deployed model path."
+    return (
+        f"{disease.title()} explanation: score={risk_score:.4f}, level={risk_level}, "
+        f"band={threshold_band}. Major factors: {factor_text}.{warning_hint}"
     )

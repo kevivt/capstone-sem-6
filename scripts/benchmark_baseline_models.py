@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 import argparse
+import json
 from pathlib import Path
 from typing import Callable, Dict, Tuple
 
@@ -247,6 +248,14 @@ def main() -> None:
 
     results.to_csv(csv_path, index=False)
 
+    run_cfg_path = reports_dir / "baseline_benchmark_run_config.json"
+    run_cfg = {
+        "max_train_rows": int(cap) if cap is not None else 0,
+        "sampling": "stratified",
+        "sampling_random_state": 42,
+    }
+    run_cfg_path.write_text(json.dumps(run_cfg, indent=2), encoding="utf-8")
+
     best = results.sort_values(["dataset", "macro_f1"], ascending=[True, False]).groupby("dataset", as_index=False).head(1)
     project_models = results[results["is_project_model"]].copy().sort_values("dataset").reset_index(drop=True)
 
@@ -309,6 +318,7 @@ def main() -> None:
     print("Baseline benchmarking complete")
     print(f"Saved CSV: {csv_path}")
     print(f"Saved report: {md_path}")
+    print(f"Saved run config: {run_cfg_path}")
 
 
 if __name__ == "__main__":

@@ -19,6 +19,9 @@ class PredictRiskResponse(BaseModel):
     risk_score: float
     risk_level: Literal["low", "moderate", "high"]
     threshold_used: float
+    thresholds: Dict[str, float] = Field(default_factory=dict)
+    threshold_band: str = "below_moderate"
+    major_risk_factors: list[str] = Field(default_factory=list)
     model_name: str
 
 
@@ -70,6 +73,46 @@ class PredictRiskRawResponse(PredictRiskResponse):
     validation_warnings: list[str] = Field(default_factory=list)
 
 
+class RiskExplanationRawRequest(BaseModel):
+    disease: DiseaseType
+    raw_inputs: Dict[str, Any] = Field(default_factory=dict)
+    user_id: Optional[str] = None
+
+
+class RiskExplanationRawResponse(PredictRiskRawResponse):
+    top_factors: list[Dict[str, Any]] = Field(default_factory=list)
+    calibration_context: Dict[str, Any] = Field(default_factory=dict)
+    explanation_text: str
+
+
+class RiskExplanationLogRecord(BaseModel):
+    id: int
+    user_id: Optional[str] = None
+    disease: DiseaseType
+    model_name: str
+    predicted_class: int
+    risk_score: float
+    risk_level: Literal["low", "moderate", "high"]
+    thresholds: Dict[str, float] = Field(default_factory=dict)
+    threshold_band: str
+    major_risk_factors: list[str] = Field(default_factory=list)
+    validation_warnings: list[str] = Field(default_factory=list)
+    raw_inputs: Dict[str, Any] = Field(default_factory=dict)
+    transformed_features: Dict[str, Any] = Field(default_factory=dict)
+    top_factors: list[Dict[str, Any]] = Field(default_factory=list)
+    calibration_context: Dict[str, Any] = Field(default_factory=dict)
+    explanation_text: str
+    source: str
+    created_at: str
+
+
+class RiskExplanationLogListResponse(BaseModel):
+    count: int
+    limit: int
+    offset: int
+    items: list[RiskExplanationLogRecord] = Field(default_factory=list)
+
+
 class RecommendPlanRequest(BaseModel):
     user_id: str
     disease: DiseaseType
@@ -91,6 +134,7 @@ class RecommendPlanResponse(BaseModel):
     fiber_target_g: Optional[int] = None
     fluid_target_ml: Optional[int] = None
     diet_focus: list[str] = Field(default_factory=list)
+    calibration_context: Dict[str, Any] = Field(default_factory=dict)
     recommendation_note: str
 
 
@@ -126,6 +170,7 @@ class RiskReportResponse(BaseModel):
     model_name: str
     thresholds: Dict[str, float]
     top_factors: list[Dict[str, Any]]
+    calibration_context: Dict[str, Any] = Field(default_factory=dict)
     plan: Dict[str, Any]
     recommended_foods: list[Dict[str, Any]]
     report_text: str
